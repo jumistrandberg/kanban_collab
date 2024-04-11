@@ -13,7 +13,7 @@ const Header = () => {
         </button>
       </div>
       <div className="tools_div">
-        <div>
+        <div className="tools_vue_div">
           <button className="tools_vue_btn">Board</button>
           <button className="tools_vue_btn">List</button>
         </div>
@@ -21,11 +21,11 @@ const Header = () => {
           <option value="">Filter</option>
         </select>
         <div className="user_avatar_div">
-          <CiCirclePlus role="button" />
-          <RxAvatar role="button" />
-          <RxAvatar role="button" />
-          <RxAvatar role="button" />
-          <RxAvatar role="button" />
+          <CiCirclePlus className="add_user_btn" role="button" />
+          <RxAvatar className="user_avatar active_user" role="button" />
+          <RxAvatar className="user_avatar" role="button" />
+          <RxAvatar className="user_avatar" role="button" />
+          <RxAvatar className="user_avatar" role="button" />
         </div>
       </div>
     </header>

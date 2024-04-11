@@ -6,13 +6,21 @@
   padding: 0;
 }
 
+h1 {
+  font-size: 3rem;
+}
+
+/* ***** HEADER ***** */
+
 .logo_settings_div {
-  padding: 0.5em 1em;
+  padding: 0.5em 1.5em;
   background-color: #5756b9;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
+  z-index: 2;
+  border-bottom: 3px solid #373679;
 }
 
 .settings_btn {
@@ -26,10 +34,45 @@
   background-color: #d0e1fc;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  font-size: 2rem;
+  padding: 0.3em;
+  box-shadow: 0px 4px 4px #6d6d6d;
+  margin-bottom: 1em;
+}
+
+.tools_vue_div {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.tools_vue_btn,
+#filter {
+  font-size: 1.5rem;
+  padding: 0 0.5em;
+  border-radius: 20px;
+}
+
+.user_avatar_div {
+  display: flex;
+  align-items: center;
+  gap: 0.1em;
+}
+
+.add_user_btn {
   font-size: 2rem;
 }
 
-.tools_vue_btn {
-  font-size: 1.5rem;
+.user_avatar {
+  font-size: 2.5rem;
+  background-color: rgb(206, 201, 201);
+  border-radius: 50%;
+}
+
+.active_user {
+  background-color: rgb(253, 189, 69);
+  border: 5px solid white;
+  border-radius: 50%;
+  font-size: 3.2rem;
 }
