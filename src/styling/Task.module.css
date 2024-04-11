@@ -1,0 +1,15 @@
+.taskContainer {
+  border: 2px solid magenta;
+  margin: 5px 0;
+  background-color: white;
+  border-radius: 10px;
+  padding: 0.2rem;
+  position: relative;
+}
+
+.deleteIcon {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 1.3rem;
+}
