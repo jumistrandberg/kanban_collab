@@ -8,9 +8,7 @@ const Header = () => {
     <header>
       <div className="logo_settings_div">
         <h1>KanBan App</h1>
-        <button className="settings_btn">
-          <IoMdSettings />
-        </button>
+        <IoMdSettings className="settings_btn" role="button" />
       </div>
       <div className="tools_div">
         <div className="tools_vue_div">
