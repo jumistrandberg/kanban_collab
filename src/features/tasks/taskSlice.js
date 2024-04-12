@@ -25,6 +25,7 @@ export const taskSlice = createSlice({
     removeTask: (state, action) => {
       //obs! skicka bara hit id från tasken som payload
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+      localStorage.setItem("allTasks", JSON.stringify(state.tasks));
     },
     changeTask: (state, action) => {
       //använd localState och skicka hit hela objektet som payload
@@ -34,28 +35,6 @@ export const taskSlice = createSlice({
     },
   },
 });
-
-// const initialState = {
-//     todos: [{ id: 1, text: "Vattna blommor" }],
-//   };
-
-// export const todoSlice = createSlice({
-//     name: "todo",
-//     initialState,
-//     reducers: {
-//       addTodo: (state, action) => {
-//         const todo = {
-//           id: nanoid(),
-//           text: action.payload,
-//         };
-//         //immer biblioteket i bakgrunden löser immutable-biten därav ok att köra push
-//         state.todos.push(todo);
-//       },
-//       removeTodo: (state, action) => {
-//         state.todos = state.todos.filter((todo) => todo.id !== action.payload);
-//       },
-//     },
-//   });
 
 export const { addTask, removeTask, changeTask } = taskSlice.actions;
 

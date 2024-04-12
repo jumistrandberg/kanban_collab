@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTask } from "../features/tasks/taskSlice";
 //need column index as a prop
-const AddTask = () => {
-  const task = useSelector((state) => state.allTaskReducer);
+const AddTask = ({ columnIndex }) => {
   const dispatch = useDispatch();
 
   const [newTitle, setNewTitle] = useState("");
@@ -12,12 +11,11 @@ const AddTask = () => {
     e.preventDefault();
     const sendTask = {
       title: newTitle,
-      atColumnIndex: 4,
+      atColumnIndex: columnIndex,
     };
 
     dispatch(addTask(sendTask));
     setNewTitle("");
-    console.log(task);
   };
 
   return (
