@@ -4,13 +4,13 @@ import Board from "../pages/Board";
 
 function App() {
   return (
-    <body>
+    <>
       <Header />
       <main>
         <Board />
       </main>
       <Footer />
-    </body>
+    </>
   );
 }
 

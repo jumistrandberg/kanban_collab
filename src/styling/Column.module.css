@@ -12,11 +12,22 @@
   overflow: auto;
 }
 
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffffff50;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 1em;
+}
+
 .title {
-  margin: 8px 5px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
-  background-color: #ffffff50;
   border-radius: 10px;
-  padding: 10px;
+}
+
+.delete {
+  font-size: 1.5em;
 }
