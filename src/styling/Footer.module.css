@@ -4,6 +4,14 @@
   margin: 0;
 }
 
+li {
+  cursor: pointer;
+}
+
+li:hover {
+  text-decoration: underline;
+}
+
 .footer {
   padding: 20px 0;
   background-color: #5756b9;
@@ -13,16 +21,19 @@
 
 .footerContent {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .footerLinks {
   list-style: none;
+  text-align: center;
   padding: 0;
-  margin: 0;
+  margin: -5px 0 5px 0;
 }
 
 .footerLinks li {
   display: inline;
+  margin: 0 5px;
 }
