@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 import styles from "../styling/Footer.module.css";
 
 const Footer = () => {
@@ -8,13 +10,19 @@ const Footer = () => {
       <div className={styles.footerContent}>
         <ul className={styles.footerLinks}>
           <li>
-            <a href="*"></a>Home
+            <NavLink className={styles.active} to="/">
+              Home
+            </NavLink>
           </li>
           <li>
-            <a href="*"></a>About
+            <NavLink className={styles.active} to="/about">
+              About
+            </NavLink>
           </li>
           <li>
-            <a href="*"></a>Settings
+            <NavLink className={styles.active} to="/settings">
+              Settings
+            </NavLink>
           </li>
         </ul>
         <p>&copy; {currentYear} Kanban App</p>
