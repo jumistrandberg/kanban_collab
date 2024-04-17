@@ -2,6 +2,7 @@ import React from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { RxAvatar } from "react-icons/rx";
 import { IoMdSettings } from "react-icons/io";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -13,7 +14,9 @@ const Header = () => {
       <div className="tools_div">
         <div className="tools_vue_div">
           <button className="tools_vue_btn">Board</button>
-          <button className="tools_vue_btn">List</button>
+          <NavLink to="/list">
+            <button className="tools_vue_btn">List</button>
+          </NavLink>
         </div>
         <select name="filter" id="filter">
           <option value="">Filter</option>
