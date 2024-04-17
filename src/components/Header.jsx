@@ -13,7 +13,9 @@ const Header = () => {
       </div>
       <div className="tools_div">
         <div className="tools_vue_div">
-          <button className="tools_vue_btn">Board</button>
+          <NavLink to="/">
+            <button className="tools_vue_btn">Board</button>
+          </NavLink>
           <NavLink to="/list">
             <button className="tools_vue_btn">List</button>
           </NavLink>
