@@ -1,10 +1,29 @@
-import React from "react";
+import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import styles from "../styling/TaskPopup.module.css";
+import { useDispatch } from "react-redux";
+import { updateTaskDetails } from "../features/tasks/taskSlice";
 
 const TaskPopup = ({ task, onClose }) => {
+  const dispatch = useDispatch();
+  const [title, setTitle] = useState(task.title);
+  const [description, setDescription] = useState(task.description);
+
   const handleClose = (e) => {
     e.stopPropagation();
+    onClose();
+  };
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleSaveChanges = () => {
+    dispatch(updateTaskDetails({ id: task.id, title, description }));
     onClose();
   };
 
@@ -15,7 +34,20 @@ const TaskPopup = ({ task, onClose }) => {
         <button className={styles.CloseBtn} onClick={handleClose}>
           <MdClose />
         </button>
-        <h3>{task.title}</h3>
+        <input
+          type="text"
+          value={title}
+          onChange={handleTitleChange}
+          className={styles.TitleInput}
+        />
+        <textarea
+          value={description}
+          onChange={handleDescriptionChange}
+          className={styles.DescriptionInput}
+        ></textarea>
+        <button className={styles.SaveBtn} onClick={handleSaveChanges}>
+          Save Changes
+        </button>
       </div>
     </div>
   );

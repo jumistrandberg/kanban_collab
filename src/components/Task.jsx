@@ -15,7 +15,6 @@ const Task = ({ task }) => {
   };
 
   const handleClose = () => {
-    console.log("Closing TaskPopup");
     setShowPopup(false);
   };
 
