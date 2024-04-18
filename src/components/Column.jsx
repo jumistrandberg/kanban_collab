@@ -2,16 +2,14 @@ import { React, useState } from "react";
 import Task from "./Task";
 import AddTask from "./AddTask";
 import styles from "../styling/Column.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { removeColumn } from "../features/columns/columnSlice";
+import { useSelector } from "react-redux";
 import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
 import ConfirmDeletionModal from "./ConfirmDeletionModal";
 
 const Column = ({ id, columnIndex, title }) => {
   const [showModal, setShowModal] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
-  const dispatch = useDispatch();
-  const ConfirmDeltion = () => {
+  const ConfirmDeletion = () => {
     setShowModal(true);
   };
   return (
@@ -21,7 +19,7 @@ const Column = ({ id, columnIndex, title }) => {
         <DeleteBtn
           className={styles.delete}
           //onClick={() => dispatch(removeColumn(id))}
-          onClick={ConfirmDeltion}
+          onClick={ConfirmDeletion}
         />
       </div>
       {tasks.map((task) =>
@@ -30,7 +28,9 @@ const Column = ({ id, columnIndex, title }) => {
         ) : null
       )}
       <AddTask columnIndex={columnIndex} />
-      {showModal && <ConfirmDeletionModal setShowModal={setShowModal} />}
+      {showModal && (
+        <ConfirmDeletionModal setShowModal={setShowModal} columnId={id} />
+      )}
     </div>
   );
 };

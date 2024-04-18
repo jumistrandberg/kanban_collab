@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import styles from "../styling/Column.module.css";
+import { useDispatch } from "react-redux";
+import { removeColumn } from "../features/columns/columnSlice";
 
-const ConfirmDeletionModal = ({ setShowModal }) => {
+const ConfirmDeletionModal = ({ setShowModal, columnId }) => {
   const [keepTasks, setKeepTasks] = useState(false);
-  const testFunction = () => {
-    console.log(keepTasks);
+  const dispatch = useDispatch();
+  const handleConfirmDelete = () => {
+    dispatch(removeColumn(columnId));
+    setShowModal(false);
   };
 
   const handleCheckboxClick = (event) => {
@@ -31,7 +35,10 @@ const ConfirmDeletionModal = ({ setShowModal }) => {
             <label>Keep Tasks?</label>
           </form>
           <div className={styles.modalButtonContainer}>
-            <button onClick={testFunction} className={styles.modalButton}>
+            <button
+              onClick={handleConfirmDelete}
+              className={styles.modalButton}
+            >
               Confirm
             </button>
             <button
