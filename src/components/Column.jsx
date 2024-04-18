@@ -16,11 +16,7 @@ const Column = ({ id, columnIndex, title }) => {
     <div className={styles.column}>
       <div className={styles.titleContainer}>
         <h2 className={styles.title}>{title}</h2>
-        <DeleteBtn
-          className={styles.delete}
-          //onClick={() => dispatch(removeColumn(id))}
-          onClick={ConfirmDeletion}
-        />
+        <DeleteBtn className={styles.delete} onClick={ConfirmDeletion} />
       </div>
       {tasks.map((task) =>
         task.atColumnIndex === columnIndex ? (
@@ -29,7 +25,12 @@ const Column = ({ id, columnIndex, title }) => {
       )}
       <AddTask columnIndex={columnIndex} />
       {showModal && (
-        <ConfirmDeletionModal setShowModal={setShowModal} columnId={id} />
+        <ConfirmDeletionModal
+          setShowModal={setShowModal}
+          columnId={id}
+          tasks={tasks}
+          columnIndex={columnIndex}
+        />
       )}
     </div>
   );
