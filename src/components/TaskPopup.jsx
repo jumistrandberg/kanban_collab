@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import styles from "../styling/TaskPopup.module.css";
 import { useDispatch } from "react-redux";
-import { updateTaskDetails } from "../features/tasks/taskSlice";
+import { updateTaskDetails, removeTask } from "../features/tasks/taskSlice";
 
 const TaskPopup = ({ task, onClose }) => {
   const dispatch = useDispatch();
