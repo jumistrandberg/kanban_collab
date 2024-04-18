@@ -30,7 +30,7 @@ const Column = ({ id, columnIndex, title }) => {
         ) : null
       )}
       <AddTask columnIndex={columnIndex} />
-      {showModal && <ConfirmDeletionModal />}
+      {showModal && <ConfirmDeletionModal setShowModal={setShowModal} />}
     </div>
   );
 };
