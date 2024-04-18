@@ -31,3 +31,26 @@
 .delete {
   font-size: 1.5em;
 }
+
+.deletionModal {
+  z-index: 9;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
