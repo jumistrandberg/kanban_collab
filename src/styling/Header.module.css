@@ -1,0 +1,63 @@
+.logoSettingsDiv {
+  padding: 0.5em 1.5em;
+  background-color: #5756b9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  border-bottom: 3px solid #373679;
+}
+
+.settingsBtn {
+  /* border: none; */
+  background-color: transparent;
+  color: white;
+  font-size: 3rem;
+}
+
+.toolsDiv {
+  background-color: #d0e1fc;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 2rem;
+  padding: 0.3em;
+  box-shadow: 0px 4px 4px #6d6d6d;
+  margin-bottom: 1em;
+}
+
+.vueBtnDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+.vueBtn,
+.filter {
+  font-size: 1.5rem;
+  padding: 0 0.5em;
+  border-radius: 20px;
+}
+
+.avatarDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.1em;
+}
+
+.addUserBtn {
+  font-size: 2rem;
+}
+
+.userAvatar {
+  font-size: 2.5rem;
+  background-color: rgb(206, 201, 201);
+  border-radius: 50%;
+}
+
+.activeUser {
+  background-color: rgb(253, 189, 69);
+  border: 5px solid white;
+  border-radius: 50%;
+  font-size: 3.2rem;
+}

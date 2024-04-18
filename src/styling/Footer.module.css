@@ -4,12 +4,10 @@
   margin: 0;
 }
 
-li {
-  cursor: pointer;
-}
-
-li:hover {
-  text-decoration: underline;
+.active {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .footer {
