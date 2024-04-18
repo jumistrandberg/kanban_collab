@@ -32,6 +32,7 @@ const ConfirmDeletionModal = ({
 
   const handleCloseModalWindow = () => {
     setShowModal(false);
+    console.log("test");
   };
   return (
     <>
