@@ -27,6 +27,11 @@ const TaskPopup = ({ task, onClose }) => {
     onClose();
   };
 
+  const handleDeleteTask = () => {
+    dispatch(removeTask(task.id));
+    onClose();
+  };
+
   return (
     <div className={styles.TaskPopupContainer}>
       <div className={styles.Overlay}></div>
@@ -47,6 +52,9 @@ const TaskPopup = ({ task, onClose }) => {
         ></textarea>
         <button className={styles.SaveBtn} onClick={handleSaveChanges}>
           Save Changes
+        </button>
+        <button className={styles.DeleteBtn} onClick={handleDeleteTask}>
+          Delete Task
         </button>
       </div>
     </div>
