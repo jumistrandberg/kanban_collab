@@ -5,6 +5,7 @@
   border-radius: 10px;
   padding: 0.2rem;
   position: relative;
+  cursor: pointer;
 }
 
 .deleteIcon {
