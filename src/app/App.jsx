@@ -9,6 +9,7 @@ import Board from "../pages/Board";
 import Admin from "../pages/Admin";
 import MissingPage from "../pages/MissingPage";
 import Settings from "../pages/Settings";
+import ListPage from "../pages/ListPage";
 // import List from "../pages/List";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Board />} />
           {/* TODO - List är utkommenterat till Kuiper har skapat sidan */}
-          {/* <Route path="/list" element={<List />}/> */}
+          <Route path="/list" element={<ListPage />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<MissingPage />} />
