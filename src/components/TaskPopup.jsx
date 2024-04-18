@@ -9,18 +9,15 @@ const TaskPopup = ({ task, onClose }) => {
   };
 
   return (
-    <>
-      <div className={styles.PopupOverlay} onClick={onClose}></div>
-      <div
-        className={styles.TaskPopupContainer}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className={styles.closeButton} onClick={handleClose}>
+    <div className={styles.TaskPopupContainer}>
+      <div className={styles.Overlay}></div>
+      <div className={styles.Popup} onClick={(e) => e.stopPropagation()}>
+        <button className={styles.CloseBtn} onClick={handleClose}>
           <MdClose />
         </button>
-        <h4>{task.title}</h4>
+        <h3>{task.title}</h3>
       </div>
-    </>
+    </div>
   );
 };
 
