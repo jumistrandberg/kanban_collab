@@ -9,9 +9,11 @@ import ConfirmDeletionModal from "./ConfirmDeletionModal";
 const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
+
   const ConfirmDeletion = () => {
     setShowModal(true);
   };
+
   return (
     <div className={styles.column}>
       <div className={styles.titleContainer}>
