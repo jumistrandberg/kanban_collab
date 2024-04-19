@@ -5,23 +5,13 @@ import styles from "../styling/Column.module.css";
 import { useSelector } from "react-redux";
 import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
 import ConfirmDeletionModal from "./ConfirmDeletionModal";
-import TaskPopup from "./TaskPopup";
 
 const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedTask, setSelectedTask] = useState(null);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
 
   const ConfirmDeletion = () => {
     setShowModal(true);
-  };
-
-  const handleTaskClick = (task) => {
-    setSelectedTask(task);
-  };
-
-  const handleCloseTaskPopup = () => {
-    setSelectedTask(null);
   };
 
   return (
@@ -40,9 +30,6 @@ const Column = ({ columnId, title }) => {
           columnId={columnId}
           tasks={tasks}
         />
-      )}
-      {selectedTask && (
-        <TaskPopup task={selectedTask} onClose={handleCloseTaskPopup} />
       )}
     </div>
   );
