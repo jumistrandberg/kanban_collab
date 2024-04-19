@@ -39,7 +39,7 @@ h4 {
   font-size: 28px;
 }
 
-.CloseBtn {
+.Close {
   font-size: 26px;
   color: rgba(0, 0, 0, 0.8);
   border: none;
@@ -52,11 +52,11 @@ h4 {
   border-radius: 20px;
 }
 
-.CloseBtn:hover {
+.Close:hover {
   background-color: rgba(189, 189, 189, 0.8);
 }
 
-.CloseBtn svg {
+.Close svg {
   margin: auto;
   display: block;
 }
@@ -177,4 +177,95 @@ h4 {
 
 .DeleteBtn:hover {
   background-color: #c5a2a2;
+}
+
+@media only screen and (max-width: 800px) {
+  .Popup {
+    max-width: 26rem;
+    padding-bottom: 5rem;
+    width: 70%;
+    height: 58vh;
+  }
+
+  .TitleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2.5px;
+  }
+
+  .TitleInput {
+    font-size: 1.2rem;
+    width: 70%;
+    padding: 5px;
+    margin-top: 10px;
+  }
+
+  .MainField {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .DescriptionTitle {
+    display: none;
+  }
+
+  .DescriptionContainer {
+    margin-left: 0;
+    width: 90%;
+    margin-top: -1rem;
+  }
+
+  .DescriptionInput {
+    height: 18vh;
+  }
+
+  .ExtraBtnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 1px;
+    margin-left: 0;
+  }
+
+  .ExtraTitle {
+    display: none;
+  }
+
+  .Extra {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 5px 18px;
+    height: 24vh;
+    width: 22.7rem;
+  }
+
+  .ExtraBtn {
+    height: 2rem;
+  }
+
+  .DeadlineBtn,
+  .MemberBtn,
+  .Extra2Btn {
+    width: 14rem;
+  }
+
+  .FlexBtn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-left: 0;
+  }
+
+  .BtnContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+  }
 }

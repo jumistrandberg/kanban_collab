@@ -43,7 +43,7 @@ const TaskPopup = ({ task, onClose }) => {
     <div className={styles.TaskPopupContainer}>
       <div className={styles.Overlay}></div>
       <div className={styles.Popup} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.CloseBtn} onClick={handleClose}>
+        <button className={styles.Close} onClick={handleClose}>
           <MdClose />
         </button>
         <div className={styles.TitleContainer}>
@@ -69,13 +69,25 @@ const TaskPopup = ({ task, onClose }) => {
           <div className={styles.ExtraBtnContainer}>
             <div className={styles.Extra}>
               <h4 className={styles.ExtraTitle}>Add to card</h4>
-              <button className={styles.ExtraBtn}>Deadline</button>
-              <button className={styles.ExtraBtn}>Do Date</button>
-              <button className={styles.ExtraBtn}>Member</button>
-              <button className={styles.ExtraBtn}>Extra</button>
-              <button className={styles.ExtraBtn}>Extra</button>
-              <button className={styles.ExtraBtn}>Extra</button>
-              <button className={styles.ExtraBtn}>Extra</button>
+              <button className={`${styles.ExtraBtn} ${styles.DeadlineBtn}`}>
+                Deadline
+              </button>
+              <div className={styles.FlexBtn}>
+                <button className={`${styles.ExtraBtn} ${styles.DoDateBtn}`}>
+                  Do Date
+                </button>
+              </div>
+              <button className={`${styles.ExtraBtn} ${styles.MemberBtn}`}>
+                Member
+              </button>
+              <div className={styles.FlexBtn}>
+                <button className={`${styles.ExtraBtn} ${styles.Extra1Btn}`}>
+                  Extra 1
+                </button>
+              </div>
+              <button className={`${styles.ExtraBtn} ${styles.Extra2Btn}`}>
+                Extra 2
+              </button>
             </div>
           </div>
         </div>
