@@ -20,10 +20,12 @@ const ConfirmDeletionModal = ({ setShowModal, columnId, tasks }) => {
       tasksToDelete.forEach((task) => {
         dispatch(removeTask(task.id));
       });
+
       //If user wants to keep their tasks
     } else if (keepTasks === true) {
       dispatch(removeColumn(columnId));
       setShowModal(false);
+
       //Copies tasks at moves them to column of index 0
       const tasksToMove = tasks.filter((task) => task.atColumnId === columnId);
       tasksToMove.forEach((taskToMove) => {
