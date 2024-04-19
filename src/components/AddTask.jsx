@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../features/tasks/taskSlice";
 //need column index as a prop
-const AddTask = ({ columnIndex }) => {
+const AddTask = ({ columnId }) => {
   const dispatch = useDispatch();
 
   const [newTitle, setNewTitle] = useState("");
@@ -11,7 +11,7 @@ const AddTask = ({ columnIndex }) => {
     e.preventDefault();
     const sendTask = {
       title: newTitle,
-      atColumnIndex: columnIndex,
+      atColumnId: columnId,
     };
 
     dispatch(addTask(sendTask));
