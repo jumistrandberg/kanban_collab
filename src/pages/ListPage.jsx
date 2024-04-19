@@ -9,7 +9,7 @@ const ListPage = () => {
     <section className={styles.listContainer}>
       <h2>List view</h2>
       {tasks.map((task) => (
-        <ListItem task={task} />
+        <ListItem key={`listItem-${task.id}`} task={task} />
       ))}
     </section>
   );

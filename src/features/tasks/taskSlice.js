@@ -30,9 +30,11 @@ export const taskSlice = createSlice({
     },
     changeTask: (state, action) => {
       //använd localState och skicka hit hela objektet som payload
+
       state.tasks = state.tasks.map((task) =>
         task.id === action.payload.id ? action.payload : task
       );
+      localStorage.setItem("allTasks", JSON.stringify(state.tasks));
     },
   },
 });
