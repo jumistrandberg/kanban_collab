@@ -4,7 +4,7 @@ import ListItem from "../components/ListItem";
 import { useSelector } from "react-redux";
 const ListPage = () => {
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
-  console.log(tasks);
+
   return (
     <section className={styles.listContainer}>
       <h2>List view</h2>

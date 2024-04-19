@@ -2,8 +2,9 @@ import React from "react";
 import styles from "../styling/ListPage.module.css";
 import { useSelector } from "react-redux";
 const ListItem = ({ task }) => {
+  //get all columns from redux and find the collum that the task is assigned to
   const columns = useSelector((state) => state.allColumnReducer.columns);
-  const columnName = columns.at(task.atColumnIndex);
+  const columnName = columns.find((column) => column.id == task.atColumnId);
 
   return (
     <div className={styles.listItem}>
