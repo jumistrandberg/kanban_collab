@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTask } from "../features/tasks/taskSlice";
-const ColumnDropdownSelector = ({ defaultColumnId, task }) => {
+const ColumnDropdownSelector = ({ task }) => {
+  //gets the initial columnId to create to correct options
+  const defaultColumnId = task.atColumnId;
   const columns = useSelector((state) => state.allColumnReducer.columns);
   const defaultColumn = columns.find((column) => column.id == defaultColumnId);
+
   //a local state copy of the task
   const [updatedTask, setUpdatedTask] = useState(task);
   const dispatch = useDispatch();

@@ -7,8 +7,7 @@ const ListItem = ({ task }) => {
     <div className={styles.listItem}>
       <p>{task.title}</p>
       <p>assigned</p>
-
-      <ColumnDropdownSelector defaultColumnId={task.atColumnId} task={task} />
+      <ColumnDropdownSelector task={task} />
     </div>
   );
 };
