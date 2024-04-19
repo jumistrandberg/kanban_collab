@@ -34,9 +34,19 @@ export const taskSlice = createSlice({
         task.id === action.payload.id ? action.payload : task
       );
     },
+    updateTaskDetails: (state, action) => {
+      const { id, title, description } = action.payload;
+      const taskToUpdate = state.tasks.find((task) => task.id === id);
+      if (taskToUpdate) {
+        taskToUpdate.title = title;
+        taskToUpdate.description = description;
+        localStorage.setItem("allTasks", JSON.stringify(state.tasks));
+      }
+    },
   },
 });
 
-export const { addTask, removeTask, changeTask } = taskSlice.actions;
+export const { addTask, removeTask, changeTask, updateTaskDetails } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;
