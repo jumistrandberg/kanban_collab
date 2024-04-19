@@ -33,18 +33,33 @@ export const taskSlice = createSlice({
     },
     changeTask: (state, action) => {
       //använd localState och skicka hit hela objektet som payload
+
       state.tasks = state.tasks.map((task) =>
         task.id === action.payload.id ? action.payload : task
       );
+
       saveTasks(state.tasks);
     },
     setTasks: (state, action) => {
       state.tasks = action.payload;
       saveTasks(state.tasks);
     },
+
+    updateTaskDetails: (state, action) => {
+      const { id, title, description } = action.payload;
+      const taskToUpdate = state.tasks.find((task) => task.id === id);
+      if (taskToUpdate) {
+        taskToUpdate.title = title;
+        taskToUpdate.description = description;
+        saveTasks(state.tasks);
+      }
+    },
+
+
   },
 });
 
-export const { addTask, removeTask, changeTask, setTasks } = taskSlice.actions;
+export const { addTask, removeTask, changeTask, setTasks, updateTaskDetails } = taskSlice.actions;
+
 
 export default taskSlice.reducer;

@@ -2,9 +2,10 @@ import { React, useState } from "react";
 import Task from "./Task";
 import AddTask from "./AddTask";
 import styles from "../styling/Column.module.css";
+
 import { useSelector, useDispatch } from "react-redux";
-import { removeColumn } from "../features/columns/columnSlice";
 import { setTasks } from "../features/tasks/taskSlice";
+
 import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
 import ConfirmDeletionModal from "./ConfirmDeletionModal";
 import DropIndicator from "./DropIndicator";
@@ -13,10 +14,11 @@ const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
   const [active, setActive] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
-  const dispatch = useDispatch();
-  const ConfirmDeltion = () => {
+
+  const ConfirmDeletion = () => {
     setShowModal(true);
   };
+
 
   // set data to be moved in drag and drop
   const handleDragStart = (e, tasks) => {
@@ -167,8 +169,7 @@ const Column = ({ columnId, title }) => {
           <h2 className={styles.title}>{title}</h2>
           <DeleteBtn
             className={styles.delete}
-            onClick={() => dispatch(removeColumn(columnId))}
-            // onClick={ConfirmDeltion}
+            onClick={ConfirmDeltion}
           />
         </div>
         {filteredTasks.map((task) => {
@@ -183,9 +184,16 @@ const Column = ({ columnId, title }) => {
         })}
         <DropIndicator beforeTaskId={null} columnId={columnId} />
         <AddTask columnId={columnId} />
-        {/* {showModal && <ConfirmDeletionModal />} */}
+        {showModal && (
+        <ConfirmDeletionModal
+          setShowModal={setShowModal}
+          columnId={columnId}
+          tasks={tasks}
+        />
+      )}
       </div>
     </section>
+
   );
 };
 
