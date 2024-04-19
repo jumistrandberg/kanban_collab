@@ -4,12 +4,7 @@ import { useDispatch } from "react-redux";
 import { removeTask } from "../features/tasks/taskSlice";
 import { removeColumn } from "../features/columns/columnSlice";
 
-const ConfirmDeletionModal = ({
-  setShowModal,
-  columnId,
-  tasks,
-  columnIndex,
-}) => {
+const ConfirmDeletionModal = ({ setShowModal, columnId, tasks }) => {
   const [keepTasks, setKeepTasks] = useState(false);
   const dispatch = useDispatch();
 
@@ -17,9 +12,7 @@ const ConfirmDeletionModal = ({
   const handleConfirmDelete = () => {
     dispatch(removeColumn(columnId));
     setShowModal(false);
-    const tasksToDelete = tasks.filter(
-      (task) => task.atColumnIndex === columnIndex
-    );
+    const tasksToDelete = tasks.filter((task) => task.atColumnId === columnId);
     tasksToDelete.forEach((task) => {
       dispatch(removeTask(task.id));
     });
@@ -32,7 +25,6 @@ const ConfirmDeletionModal = ({
 
   const handleCloseModalWindow = () => {
     setShowModal(false);
-    console.log("test");
   };
   return (
     <>
