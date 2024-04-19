@@ -6,6 +6,7 @@ import { removeColumn } from "../features/columns/columnSlice";
 
 const ConfirmDeletionModal = ({ setShowModal, columnId, tasks }) => {
   const [keepTasks, setKeepTasks] = useState(false);
+  const [columnIndex, setColumnIndex] = useState(0);
   const columns = useSelector((state) => state.allColumnReducer.columns);
   const dispatch = useDispatch();
 
@@ -31,7 +32,7 @@ const ConfirmDeletionModal = ({ setShowModal, columnId, tasks }) => {
       tasksToMove.forEach((taskToMove) => {
         const newTask = {
           ...taskToMove,
-          atColumnId: columns[0].id,
+          atColumnId: columns[columnIndex].id,
         };
         dispatch(addTask(newTask));
 
@@ -46,9 +47,16 @@ const ConfirmDeletionModal = ({ setShowModal, columnId, tasks }) => {
     }
   };
 
+  const changeIndex = () => {
+    setColumnIndex(1);
+  };
+
   //Changes state based on checkbox
   const handleCheckboxClick = (event) => {
     setKeepTasks(event.target.checked);
+    if (columns[columnIndex].id === columnId) {
+      changeIndex();
+    }
   };
 
   const handleCloseModalWindow = () => {
