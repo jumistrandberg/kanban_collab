@@ -26,7 +26,7 @@ const ConfirmDeletionModal = ({ setShowModal, columnId, tasks }) => {
       dispatch(removeColumn(columnId));
       setShowModal(false);
 
-      //Copies tasks at moves them to column of index 0
+      //Copies tasks and moves them to column of index 0
       const tasksToMove = tasks.filter((task) => task.atColumnId === columnId);
       tasksToMove.forEach((taskToMove) => {
         const newTask = {
@@ -34,6 +34,7 @@ const ConfirmDeletionModal = ({ setShowModal, columnId, tasks }) => {
           atColumnId: columns[0].id,
         };
         dispatch(addTask(newTask));
+
         //Clean up by removing the moved tasks
         const tasksToDelete = tasks.filter(
           (task) => task.atColumnId === columnId
