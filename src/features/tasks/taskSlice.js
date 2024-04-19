@@ -16,7 +16,8 @@ export const taskSlice = createSlice({
         doDate: "",
         deadline: "",
         assignedUsers: "",
-        atColumnIndex: action.payload.atColumnIndex,
+        atColumnId: action.payload.atColumnId,
+        // atColumnIndex: action.payload.atColumnIndex,
       };
 
       state.tasks.push(newTask);

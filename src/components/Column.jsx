@@ -7,7 +7,7 @@ import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
 import ConfirmDeletionModal from "./ConfirmDeletionModal";
 import TaskPopup from "./TaskPopup";
 
-const Column = ({ id, columnIndex, title }) => {
+const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
@@ -31,21 +31,14 @@ const Column = ({ id, columnIndex, title }) => {
         <DeleteBtn className={styles.delete} onClick={ConfirmDeletion} />
       </div>
       {tasks.map((task) =>
-        task.atColumnIndex === columnIndex ? (
-          <Task
-            key={task.id}
-            task={task}
-            onClick={() => handleTaskClick(task)}
-          />
-        ) : null
+        task.atColumnId === columnId ? <Task key={task.id} task={task} /> : null
       )}
-      <AddTask columnIndex={columnIndex} />
+      <AddTask columnId={columnId} />
       {showModal && (
         <ConfirmDeletionModal
           setShowModal={setShowModal}
-          columnId={id}
+          columnId={columnId}
           tasks={tasks}
-          columnIndex={columnIndex}
         />
       )}
       {selectedTask && (
