@@ -186,7 +186,8 @@ h4 {
     max-width: 26rem;
     padding-bottom: 5rem;
     width: 75%;
-    height: 58vh;
+    padding: 0 0 16rem 0;
+    height: auto;
   }
 
   .TitleContainer {
@@ -230,7 +231,8 @@ h4 {
     align-items: center;
     position: absolute;
     bottom: 1px;
-    margin-left: 2rem;
+    margin-left: 4rem;
+    margin-bottom: 1rem;
   }
 
   .ExtraTitle {
