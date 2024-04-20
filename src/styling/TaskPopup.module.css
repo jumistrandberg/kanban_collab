@@ -224,52 +224,32 @@ h4 {
     height: 18vh;
   }
 
+  .BtnContainer {
+    padding-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
   .ExtraBtnContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: 1px;
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .ExtraTitle {
-    display: none;
+    position: fixed;
+    bottom: 0px;
+    margin: 2rem 0;
   }
 
   .Extra {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 5px 18px;
-    height: 27vh;
-    width: 20rem;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
   }
 
   .ExtraBtn {
     height: 2rem;
-  }
-
-  .DeadlineBtn,
-  .MemberBtn,
-  .Extra2Btn {
-    height: 2rem;
-    width: 14rem;
-  }
-
-  .FlexBtn {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    margin-left: 0;
-  }
-
-  .BtnContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0;
+    width: 12rem;
   }
 }

@@ -72,19 +72,15 @@ const TaskPopup = ({ task, onClose }) => {
               <button className={`${styles.ExtraBtn} ${styles.DeadlineBtn}`}>
                 Deadline
               </button>
-              <div className={styles.FlexBtn}>
-                <button className={`${styles.ExtraBtn} ${styles.DoDateBtn}`}>
-                  Do Date
-                </button>
-              </div>
+              <button className={`${styles.ExtraBtn} ${styles.DoDateBtn}`}>
+                Do Date
+              </button>
               <button className={`${styles.ExtraBtn} ${styles.MemberBtn}`}>
                 Member
               </button>
-              <div className={styles.FlexBtn}>
-                <button className={`${styles.ExtraBtn} ${styles.Extra1Btn}`}>
-                  Extra 1
-                </button>
-              </div>
+              <button className={`${styles.ExtraBtn} ${styles.Extra1Btn}`}>
+                Extra 1
+              </button>
               <button className={`${styles.ExtraBtn} ${styles.Extra2Btn}`}>
                 Extra 2
               </button>
