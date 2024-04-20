@@ -137,6 +137,7 @@ h4 {
   border-radius: 5px;
   margin: 5px 10px 5px 0;
   font-weight: 600;
+  color: #030303;
   background-color: rgb(214, 214, 214);
 }
 
@@ -159,6 +160,7 @@ h4 {
   border: none;
   font-size: 14px;
   font-weight: 700;
+  color: #030303;
 }
 
 .SaveBtn {
@@ -183,7 +185,7 @@ h4 {
   .Popup {
     max-width: 26rem;
     padding-bottom: 5rem;
-    width: 70%;
+    width: 75%;
     height: 58vh;
   }
 
@@ -228,7 +230,7 @@ h4 {
     align-items: center;
     position: absolute;
     bottom: 1px;
-    margin-left: 0;
+    margin-left: 2rem;
   }
 
   .ExtraTitle {
