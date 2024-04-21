@@ -131,6 +131,8 @@ h4 {
 }
 
 .ExtraBtn {
+  display: flex;
+  align-items: center;
   width: 8rem;
   height: 40px;
   border: none;
@@ -139,6 +141,11 @@ h4 {
   font-weight: 600;
   color: #030303;
   background-color: rgb(214, 214, 214);
+}
+
+.ExtraBtn svg {
+  font-size: 20px;
+  margin: 0 15px;
 }
 
 .ExtraBtn:hover {
