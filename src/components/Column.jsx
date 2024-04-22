@@ -14,11 +14,11 @@ const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
   const [active, setActive] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
+  const dispatch = useDispatch();
 
   const ConfirmDeletion = () => {
     setShowModal(true);
   };
-
 
   // set data to be moved in drag and drop
   const handleDragStart = (e, tasks) => {
@@ -167,10 +167,7 @@ const Column = ({ columnId, title }) => {
       <div className={styles.column}>
         <div className={styles.titleContainer}>
           <h2 className={styles.title}>{title}</h2>
-          <DeleteBtn
-            className={styles.delete}
-            onClick={ConfirmDeltion}
-          />
+          <DeleteBtn className={styles.delete} onClick={ConfirmDeletion} />
         </div>
         {filteredTasks.map((task) => {
           return (
@@ -185,15 +182,14 @@ const Column = ({ columnId, title }) => {
         <DropIndicator beforeTaskId={null} columnId={columnId} />
         <AddTask columnId={columnId} />
         {showModal && (
-        <ConfirmDeletionModal
-          setShowModal={setShowModal}
-          columnId={columnId}
-          tasks={tasks}
-        />
-      )}
+          <ConfirmDeletionModal
+            setShowModal={setShowModal}
+            columnId={columnId}
+            tasks={tasks}
+          />
+        )}
       </div>
     </section>
-
   );
 };
 
