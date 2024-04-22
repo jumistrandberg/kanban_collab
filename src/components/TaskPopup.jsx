@@ -3,6 +3,14 @@ import { MdClose } from "react-icons/md";
 import styles from "../styling/TaskPopup.module.css";
 import { useDispatch } from "react-redux";
 import { updateTaskDetails, removeTask } from "../features/tasks/taskSlice";
+import {
+  MdSave,
+  MdDelete,
+  MdSchedule,
+  MdDateRange,
+  MdPerson,
+  MdMoreHoriz,
+} from "react-icons/md";
 
 const TaskPopup = ({ task, onClose }) => {
   const dispatch = useDispatch();
@@ -43,7 +51,7 @@ const TaskPopup = ({ task, onClose }) => {
     <div className={styles.TaskPopupContainer}>
       <div className={styles.Overlay}></div>
       <div className={styles.Popup} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.CloseBtn} onClick={handleClose}>
+        <button className={styles.Close} onClick={handleClose}>
           <MdClose />
         </button>
         <div className={styles.TitleContainer}>
@@ -69,17 +77,21 @@ const TaskPopup = ({ task, onClose }) => {
           <div className={styles.ExtraBtnContainer}>
             <div className={styles.Extra}>
               <h4 className={styles.ExtraTitle}>Add to card</h4>
-              <button className={styles.ExtraBtn}>Deadline</button>
-              <button className={styles.ExtraBtn}>Do Date</button>
-              <button className={styles.ExtraBtn}>Member</button>
-              <button className={styles.ExtraBtn}>Extra</button>
-              <button className={styles.ExtraBtn}>Extra</button>
-              <button className={styles.ExtraBtn}>Extra</button>
-              <button className={styles.ExtraBtn}>Extra</button>
-              <button className={styles.ExtraBtn}>Extra</button>
-              <button className={styles.ExtraBtn}>Extra</button>
-              <button className={styles.ExtraBtn}>Extra</button>
-              <button className={styles.ExtraBtn}>Extra</button>
+              <button className={`${styles.ExtraBtn} ${styles.DeadlineBtn}`}>
+                <MdSchedule /> Deadline
+              </button>
+              <button className={`${styles.ExtraBtn} ${styles.DoDateBtn}`}>
+                <MdDateRange /> Do Date
+              </button>
+              <button className={`${styles.ExtraBtn} ${styles.MemberBtn}`}>
+                <MdPerson /> Member
+              </button>
+              <button className={`${styles.ExtraBtn} ${styles.Extra1Btn}`}>
+                <MdMoreHoriz /> Extra 1
+              </button>
+              <button className={`${styles.ExtraBtn} ${styles.Extra2Btn}`}>
+                <MdMoreHoriz /> Extra 2
+              </button>
             </div>
           </div>
         </div>
