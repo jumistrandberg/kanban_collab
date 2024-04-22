@@ -60,7 +60,6 @@ const ConfirmDeletionModal = ({ setShowModal, columnId, tasks }) => {
   };
 
   const handleCloseModalWindow = () => {
-    console.log(columns[0]);
     setShowModal(false);
   };
   return (
