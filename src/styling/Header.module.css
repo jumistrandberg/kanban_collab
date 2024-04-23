@@ -49,6 +49,9 @@
   font-size: 2rem;
 }
 
+.addUserBtn:hover {
+  cursor: pointer;
+}
 .userAvatar {
   font-size: 2.5rem;
   background-color: rgb(206, 201, 201);
