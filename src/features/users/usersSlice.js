@@ -29,7 +29,7 @@ export const userSlice = createSlice({
             state.users = state.users.filter(
                 (user) => user.id !== action.payload
             )
-            localStorage.setItem("allUsres", JSON.stringify(state.users))
+            localStorage.setItem("allUsers", JSON.stringify(state.users))
         },
         modifyUser: (state, action) => {
             state.users = state.users.map((user) => 
