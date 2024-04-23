@@ -28,7 +28,7 @@ const Board = () => {
         {columns.map((column, index) => (
           <Column
             key={column.id}
-            id={column.id}
+            columnId={column.id}
             columnIndex={index}
             title={column.title}
           />
