@@ -8,7 +8,7 @@ h2{
 }
 
 .listItem{
-  padding: .5em;
+  padding: .7em;
   border: 2px solid red;
   display: flex;
   justify-content: space-between;

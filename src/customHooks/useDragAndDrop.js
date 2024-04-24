@@ -1,8 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { setTasks } from "../features/tasks/taskSlice";
-import styles from "../styling/Column.module.css";
-export default function useDragAndDrop(column) {
+
+export default function useDragAndDrop(column, currentPage) {
+  const [page, setPage] = useState(currentPage);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
@@ -45,7 +46,10 @@ export default function useDragAndDrop(column) {
       let taskToTransfer = copy.find((task) => task.id === taskId);
       if (!taskToTransfer) return;
       // Update the columnId of the task being transferred
-      taskToTransfer = { ...taskToTransfer, atColumnId: targetColumn };
+      //dont update while on list site
+      if (page == "Board") {
+        taskToTransfer = { ...taskToTransfer, atColumnId: targetColumn };
+      }
       // Remove the task from its original position
       copy = copy.filter((task) => task.id !== taskId);
       // Check if the task is moved to the end of the column
@@ -131,9 +135,6 @@ export default function useDragAndDrop(column) {
 
   //function to get an array with all elements with the attribut data-column and the value of columnId
   const getIndicators = () => {
-    console.log(
-      Array.from(document.querySelectorAll(`[data-column="${columnId}"]`))
-    );
     return Array.from(document.querySelectorAll(`[data-column="${columnId}"]`));
   };
 

@@ -22,7 +22,7 @@ const Column = ({ columnId, title }) => {
   };
 
   const { handleDragStart, handleDragEnd, handleDragOver, handleDragLeave } =
-    useDragAndDrop(columnId);
+    useDragAndDrop(columnId, "Board");
 
   // filter tasks based on the columnId
   const filteredTasks = tasks.filter((task) => task.atColumnId === columnId);
