@@ -3,6 +3,7 @@ import { MdClose } from "react-icons/md";
 import styles from "../styling/TaskPopup.module.css";
 import { useDispatch } from "react-redux";
 import { updateTaskDetails, removeTask } from "../features/tasks/taskSlice";
+import DateInput from "./DateInput";
 import {
   MdSave,
   MdDelete,
@@ -18,6 +19,8 @@ const TaskPopup = ({ task, onClose }) => {
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
   const [descriptionClicked, setDescriptionClicked] = useState(false);
+  const [isDeadlineShown, setIsDeadlineShown] = useState(false);
+  const [isDoDateShown, setIsDoDateShown] = useState(false);
 
   const handleDescriptionFocus = () => {
     setShowButtons(true);
@@ -77,12 +80,20 @@ const TaskPopup = ({ task, onClose }) => {
           <div className={styles.ExtraBtnContainer}>
             <div className={styles.Extra}>
               <h4 className={styles.ExtraTitle}>Add to card</h4>
-              <button className={`${styles.ExtraBtn} ${styles.DeadlineBtn}`}>
+              <button
+                className={`${styles.ExtraBtn} ${styles.DeadlineBtn}`}
+                onClick={() => setIsDeadlineShown(!isDeadlineShown)}
+              >
                 <MdSchedule /> Deadline
               </button>
-              <button className={`${styles.ExtraBtn} ${styles.DoDateBtn}`}>
+              {isDeadlineShown && <DateInput task={task} dateType="deadline" />}
+              <button
+                className={`${styles.ExtraBtn} ${styles.DoDateBtn}`}
+                onClick={() => setIsDoDateShown(!isDoDateShown)}
+              >
                 <MdDateRange /> Do Date
               </button>
+              {isDoDateShown && <DateInput task={task} dateType="doDate" />}
               <button className={`${styles.ExtraBtn} ${styles.MemberBtn}`}>
                 <MdPerson /> Member
               </button>
