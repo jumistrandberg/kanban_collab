@@ -6,7 +6,7 @@ export default function useDragAndDrop(column, currentPage, setActive) {
   const [page, setPage] = useState(currentPage);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
   const dispatch = useDispatch();
-  // const [active, setActive] = useState(false);
+
   const [columnId, setColumnId] = useState(column);
   // set data to be moved in drag and drop
   const handleDragStart = (e, tasks) => {
@@ -22,6 +22,7 @@ export default function useDragAndDrop(column, currentPage, setActive) {
 
     // reset active state and clear drop indicators
 
+    //check if user is on board page to avoid errors while on list Page
     if (page == "Board") {
       setActive(false);
     }
@@ -78,6 +79,7 @@ export default function useDragAndDrop(column, currentPage, setActive) {
   const handleDragOver = (e, column) => {
     e.preventDefault();
     highlightIndicator(e);
+    //check if user is on board page to avoid errors while on list Page
     if (page == "Board") {
       setActive(true);
     }
@@ -147,6 +149,7 @@ export default function useDragAndDrop(column, currentPage, setActive) {
   const handleDragLeave = () => {
     // clear highlights on indicators and the active column when dragging away from it
     clearHighlights();
+    //check if user is on board page to avoid errors while on list Page
     if (page == "Board") {
       setActive(false);
     }
