@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Task from "./Task";
 import AddTask from "./AddTask";
 import styles from "../styling/Column.module.css";
@@ -13,6 +13,13 @@ const Column = ({ columnId, title }) => {
   const [newTitle, setNewTitle] = useState(title);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const storedTitle = localStorage.getItem(`columnTitle_${columnId}`);
+    if (storedTitle) {
+      setNewTitle(storedTitle);
+    }
+  }, [columnId]);
+
   const handleTitleChange = (e) => {
     setNewTitle(e.target.value);
   };
@@ -24,6 +31,7 @@ const Column = ({ columnId, title }) => {
         title: newTitle,
       })
     );
+    localStorage.setItem(`columnTitle_${columnId}`, newTitle);
   };
 
   const ConfirmDeletion = () => {
