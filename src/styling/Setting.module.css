@@ -1,0 +1,22 @@
+.settingItemContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid blue;
+    margin: 2px 2px;
+}
+
+.settingsItem{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0rem;
+    width: 20%;
+    border: 2px solid red;
+}
+
+.settingItem label{
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
