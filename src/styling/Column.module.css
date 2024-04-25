@@ -26,6 +26,11 @@
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   border-radius: 10px;
+  width: 95%;
+  font-size: 2em;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 
 .delete {
