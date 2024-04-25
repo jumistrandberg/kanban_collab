@@ -2,13 +2,29 @@ import { React, useState } from "react";
 import Task from "./Task";
 import AddTask from "./AddTask";
 import styles from "../styling/Column.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
 import ConfirmDeletionModal from "./ConfirmDeletionModal";
+import { changeColumn } from "../features/columns/columnSlice";
 
 const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
+  const [newTitle, setNewTitle] = useState(title);
+  const dispatch = useDispatch();
+
+  const handleTitleChange = (e) => {
+    setNewTitle(e.target.value);
+  };
+
+  const handleTitleUpdate = () => {
+    dispatch(
+      changeColumn({
+        id: columnId,
+        title: newTitle,
+      })
+    );
+  };
 
   const ConfirmDeletion = () => {
     setShowModal(true);
@@ -17,7 +33,14 @@ const Column = ({ columnId, title }) => {
   return (
     <div className={styles.column}>
       <div className={styles.titleContainer}>
-        <h2 className={styles.title}>{title}</h2>
+        <input
+          className={styles.title}
+          type="text"
+          value={newTitle}
+          onChange={handleTitleChange}
+          onBlur={handleTitleUpdate}
+        />
+        {/* <h2 className={styles.title}>{title}</h2> */}
         <DeleteBtn className={styles.delete} onClick={ConfirmDeletion} />
       </div>
       {tasks.map((task) =>
