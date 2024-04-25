@@ -2,11 +2,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { setTasks } from "../features/tasks/taskSlice";
 
-export default function useDragAndDrop(column, currentPage) {
+export default function useDragAndDrop(column, currentPage, setActive) {
   const [page, setPage] = useState(currentPage);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
   const dispatch = useDispatch();
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(false);
   const [columnId, setColumnId] = useState(column);
   // set data to be moved in drag and drop
   const handleDragStart = (e, tasks) => {
@@ -21,7 +21,10 @@ export default function useDragAndDrop(column, currentPage) {
     const taskId = e.dataTransfer.getData("taskId");
 
     // reset active state and clear drop indicators
-    setActive(false);
+
+    if (page == "Board") {
+      setActive(false);
+    }
     clearHighlights();
 
     //function to get indicators for were to drop tasks
@@ -75,7 +78,9 @@ export default function useDragAndDrop(column, currentPage) {
   const handleDragOver = (e, column) => {
     e.preventDefault();
     highlightIndicator(e);
-    setActive(true);
+    if (page == "Board") {
+      setActive(true);
+    }
     setColumnId(column);
   };
 
@@ -142,7 +147,9 @@ export default function useDragAndDrop(column, currentPage) {
   const handleDragLeave = () => {
     // clear highlights on indicators and the active column when dragging away from it
     clearHighlights();
-    setActive(false);
+    if (page == "Board") {
+      setActive(false);
+    }
   };
 
   return {
