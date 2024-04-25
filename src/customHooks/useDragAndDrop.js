@@ -6,7 +6,6 @@ export default function useDragAndDrop(column, currentPage, setActive) {
   const [page, setPage] = useState(currentPage);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
   const dispatch = useDispatch();
-
   const [columnId, setColumnId] = useState(column);
   // set data to be moved in drag and drop
   const handleDragStart = (e, tasks) => {
