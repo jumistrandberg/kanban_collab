@@ -10,6 +10,7 @@ const ListItem = ({ task, handleDragStart }) => {
       <div
         className={styles.listItem}
         onDragStart={(e) => handleDragStart(e, task)}
+        draggable={true}
       >
         <p>{task.title}</p>
         <p>assigned</p>
