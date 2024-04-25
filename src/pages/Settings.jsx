@@ -44,7 +44,7 @@ const Settings = () => {
           </div>
         </div>
         <div className={styles.settingItemContainer}>
-          <div className={styles.settingsItem}>
+          <div className={styles.setBackground}>
             background img
             <input type="file" />
           </div>
@@ -56,7 +56,7 @@ const Settings = () => {
       </form>
 
       <div className={styles.settingItemContainer}>
-        <div className={styles.settingsItem}>
+        <div className={styles.deleteUser}>
           <h4>delete users</h4>
           <input type="checkbox" />
           <label>user 1</label>
