@@ -48,7 +48,6 @@ const Column = ({ columnId, title }) => {
           onChange={handleTitleChange}
           onBlur={handleTitleUpdate}
         />
-        {/* <h2 className={styles.title}>{title}</h2> */}
         <DeleteBtn className={styles.delete} onClick={ConfirmDeletion} />
       </div>
       {tasks.map((task) =>
