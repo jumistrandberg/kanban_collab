@@ -7,6 +7,7 @@ import { Link, NavLink } from "react-router-dom";
 import styles from "../styling/Header.module.css";
 
 import AddUserModal from "../features/modal/AddUserModal";
+import UsersList from "../features/users/UsersList";
 
 const Header = () => {
 
@@ -60,10 +61,11 @@ const Header = () => {
         )}
         <div className={styles.avatarDiv}>
           <CiCirclePlus className={styles.addUserBtn} role="button" onClick={OpenAddUserModal}/>
-          <RxAvatar className={styles.activeUser} role="button" />
+          {/* <RxAvatar className={styles.activeUser} role="button" />
           <RxAvatar className={styles.userAvatar} role="button" />
           <RxAvatar className={styles.userAvatar} role="button" />
-          <RxAvatar className={styles.userAvatar} role="button" />
+          <RxAvatar className={styles.userAvatar} role="button" /> */}
+          <UsersList />
         </div>
       </div>
     </header>

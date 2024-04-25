@@ -1,85 +1,93 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
+
 import styles from "../../styling/AddUserModal.module.css"
-import ColorSelector from "./ColorSelector";
 
 
 
 
-const AddUserModal = ({ 
-    handleConfirmAddUser,
-    handleCloseAddUserWindow
-}) => {
+const AddUserModal = () => {
+        
+        const dispatch = useDispatch()
 
-    const colors = ['#2d3436', '#4834d4', '#be2edd', '#f9ca24', '#6ab048', '#000', '#2d3436', '#4834d4', '#be2edd', '#f9ca24', '#6ab048', '#000', '#2d3436', '#4834d4', '#be2edd', '#f9ca24', '#6ab048', '#000', '#2d3436', '#4834d4', '#be2edd', '#f9ca24', '#6ab048', '#000']
+        const [firstName, setFirstName] = useState('')
+        const [lastName, setLastName] = useState('')
+        const [userName, setuserName] = useState('')
+        const [avatarColor, setAvatarColor] = useState('#8f999c')
 
-    const showCurrentColor = (e) => {
-        const currentColor = e.target.style.getPropertyValue('background-color')
+        const onFirstNameChange = e => setFirstName(e.target.value)
+        const onLastNameChange = e => setLastName(e.target.value)
+        const onUserNameChange = e => setuserName(e.target.value)
+        const onAvatarColorChange = e => setAvatarColor(e.target.value)
+        
+        const onSaveUser = () => {
+            if (userName) {
+                console.log(userName)
+            }
+        }
 
-        console.log(currentColor)
-    }
-  
 
-
-  return (
-    <>
-        <div className={styles.modalContainer}>
-            <div className={styles.addUserModal}>
-                Add User
-                <div className={styles.addUserModalInput}>
-                    <label className={styles.addUserModalInputLabel}> 
-                        First Name
-                    </label>
-                    <input 
-                        type="text"
-                        // onSubmit={() => handleUsers(user.id)}    
-                    />
-                    <label className={styles.addUserModalInputLabel}> 
-                        Last Name
-                    </label>
-                    <input 
-                        type="text"
-                        // onSubmit={() => handleUsers(user.id)}    
-                    />
-                    <label className={styles.addUserModalInputLabel}> 
-                        Username
-                    </label>
-                    <input 
-                        type="text"
-                        // onSubmit={() => handleUsers(user.id)}    
-                    />
-                </div>
-                <div>
-                    <label className={styles.addUserModalColorLabel}>
-                        Color
-                    </label>
-                    <div className={styles.addUserModalColorList}>
-                        {colors.map((color, idx) => 
-                            <ColorSelector 
-                                color={color}
-                                showCurrentColor={showCurrentColor}
-                            />
-                        )}
+        return (
+            <>
+                <div className={styles.modalContainer}>
+                    <div className={styles.addUserModal}>
+                        <section className={styles.addUserModalSection}>
+                            <h3 className={styles.addUserModalSectionTitle}>Add User</h3>
+                            <form className={styles.userForm}>
+                                <label htmlFor="userFirstName" className={styles.userFormInputLabel}>First Name</label>
+                                <input 
+                                    className={styles.userFormInput}
+                                    type="text" 
+                                    id="userFirstName"
+                                    name="userFirstName"
+                                    value={firstName}
+                                    onChange={onFirstNameChange}
+                                />
+                                <label htmlFor="userLastName" className={styles.userFormInputLabel}>Last Name</label>
+                                <input 
+                                    className={styles.userFormInput}
+                                    type="text" 
+                                    id="userLastName"
+                                    name="userLastName"
+                                    value={lastName}
+                                    onChange={onLastNameChange}
+                                />
+                                <label htmlFor="userUserName" className={styles.userFormInputLabel}>User Name</label>
+                                <input 
+                                    className={styles.userFormInput}
+                                    type="text" 
+                                    id="userUserName"
+                                    name="userUserName"
+                                    required
+                                    value={userName}
+                                    onChange={onUserNameChange}
+                                />
+                                <label htmlFor="chooseColor" className={styles.userFormInputLabel}>Avatar Color</label>
+                                    <input 
+                                        className={styles.userFormInputColor}
+                                        type="color" 
+                                        id="chooseColor"
+                                        name="chooseColor"
+                                        value={avatarColor}
+                                    />
+                                <div className={styles.addUserModalButtonContainer}>
+                                    <button
+                                        onClick={onSaveUser}
+                                        className={styles.addUserModalButton}
+                                    >Confirm</button>
+                                    <button
+                                        
+                                        className={styles.addUserModalButton}
+                                    >Cancel</button>
+                                </div>
+                            </form>
+                        </section>
+                        
                     </div>
                 </div>
-                <div className={styles.addUserModalButtonContainer}>
-                    <button
-                    onClick={handleConfirmAddUser}
-                    className={styles.addUserModalButton}
-                    >
-                    Confirm
-                    </button>
-                    <button
-                    onClick={handleCloseAddUserWindow}
-                    className={styles.addUserModalButton}
-                    >
-                    Cancel
-                    </button>
-                </div>
-            </div>
-        </div>
-    </>
-  )
-}
+            </>
+        )
+    }
 
 export default AddUserModal
