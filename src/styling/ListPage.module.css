@@ -12,7 +12,7 @@ h2{
   border: 2px solid red;
   display: flex;
   justify-content: space-between;
-  margin: 0 1em 15px 1em;
+  margin: 0.5em 1em 15px 0.5em;
   border-radius: 25px 25px;
   box-shadow: 3px 4px 7px 3px grey;
 }
