@@ -9,30 +9,18 @@ const DateInput = ({ dateType, task }) => {
 
   console.log(reduxTasks);
   console.log(reduxTask);
-  console.log(task.id);
-
-  //   const [date, setDate] = useState("");
 
   const handleDateInput = (e) => {
     const dateInput = e.target.value;
     console.log(dateInput);
-    // setDate(dateInput);
-    dispatch(changeTask({ ...task, deadline: dateInput }));
+    dispatch(changeTask({ ...task, [dateType]: dateInput }));
   };
-
-  //   useEffect(() => {
-  //     dispatch(changeTask({ task, id: task.id, [dateType]: date }));
-  //   }, [date]);
 
   return (
     <input
       className={styles.dateDisplay}
       type="date"
-      //   name=""
-      //   id=""
-      //   value={date}
-      value={reduxTask.deadline || ""}
-      // onChange={(e) => setDate(e.target.value)}
+      value={reduxTask[dateType] || ""}
       onChange={handleDateInput}
     />
   );
