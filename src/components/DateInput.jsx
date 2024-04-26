@@ -12,6 +12,19 @@ const DateInput = ({ dateType, task }) => {
 
   const handleDateInput = (e) => {
     const dateInput = e.target.value;
+    if (
+      dateType === "deadline" &&
+      new Date(e.target.value) < new Date(reduxTask.doDate)
+    ) {
+      alert("Deadline can not be set before doDate");
+      return;
+    } else if (
+      dateType === "doDate" &&
+      new Date(e.target.value) > new Date(reduxTask.deadline)
+    ) {
+      alert("DoDate can not be set after deadline");
+      return;
+    }
     console.log(dateInput);
     dispatch(changeTask({ ...task, [dateType]: dateInput }));
   };
