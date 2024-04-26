@@ -21,6 +21,8 @@ const Board = () => {
     };
 
     dispatch(addColumn(sendColumn));
+    setAddColumnVisible(false);
+    setPlusIconVisible(true);
     setNewTitle("");
   };
 
