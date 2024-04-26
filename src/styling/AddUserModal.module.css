@@ -1,0 +1,81 @@
+*{
+    box-sizing: border-box;
+}
+
+.modalContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 8;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+  
+.addUserModal {
+    z-index: 9;
+    width: 350px;
+    height: 400px;
+    margin-top: 140px;
+    margin-left: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    font-size: 2rem;
+    border-radius: 5px;
+  }
+
+.addUserModalSection{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.addUserModalSectionTitle{
+    font-size: 30px;
+}
+.userForm{
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.userFormInputLabel {
+    font-size: 15px;
+}
+
+.userFormInput{
+    width: 280px;
+    padding: 5px;
+    height: 25px;
+}
+
+.userFormInputColor{
+    width: 50px;
+}
+
+.addUserModalButtonContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.addUserModalButton{
+    width: 60px;
+    height: 25px;
+
+}
+
+.addUserModalButton:hover{
+    transform: translateY(-20%);
+    transition: 0.4s all ease;
+}
