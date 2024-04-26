@@ -10,6 +10,7 @@
 .userAvatar:hover{
     transform: translateY(-10px);
     transition: 0.4s all ease;
+    border-radius: 50%;
 }
 .userTitle{
     font-size: 15px;

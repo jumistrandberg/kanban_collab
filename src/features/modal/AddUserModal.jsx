@@ -13,7 +13,7 @@ const AddUserModal = ({ handleCloseAddUserWindow }) => {
         const [newFirstName, setNewFirstName] = useState('')
         const [newLastName, setNewLastName] = useState('')
         const [newUserName, setNewUserName] = useState('')
-        const [newAvatarColor, setNewAvatarColor] = useState('#8f999c')
+        const [newAvatarColor, setNewAvatarColor] = useState('')
 
         const onFirstNameChange = e => setNewFirstName(e.target.value)
         const onLastNameChange = e => setNewLastName(e.target.value)
@@ -34,6 +34,7 @@ const AddUserModal = ({ handleCloseAddUserWindow }) => {
             setNewFirstName('')
             setNewLastName('')
             setNewUserName('')
+            setNewAvatarColor('#8f999c')
             handleCloseAddUserWindow()
         }
         

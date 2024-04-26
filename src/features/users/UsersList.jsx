@@ -11,7 +11,7 @@ const UsersList = () => {
     console.log(users)
     const renderUsers = users.map(user => (
         <div key={user.id} className={styles.user}>
-            <FcReadingEbook role="button" className={styles.userAvatar}/>
+            <FcReadingEbook role="button" className={styles.userAvatar} style={{'background-color': user.userAvatarColor}}/>
             <p className={styles.userTitle}>{user.userUserName}</p>
         </div>
     ))

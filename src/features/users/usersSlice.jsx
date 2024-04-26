@@ -36,12 +36,19 @@ const usersSlice = createSlice({
                 userFirstName: action.payload.userFirstName,
                 userLastName: action.payload.userLastName,
                 userUserName: action.payload.userUserName,
-                userAvatarColor: '#8f999c',
+                userAvatarColor: action.payload.userAvatarColor,
                 userActive: false,
             }
             state.users.push(newUser)
             localStorage.setItem("allUsers", JSON.stringify(state.users))
-        }
+        },
+        changeUserColor: (state, action) => {
+            const newColor = {
+                userAvatarColor: action.payload.userAvatarColor,
+            }
+            state.users.userAvatarColor.push(newColor)
+
+        } 
     },
 })
 
