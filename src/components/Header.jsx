@@ -1,12 +1,28 @@
-import React from "react";
-import { CiCirclePlus } from "react-icons/ci";
-import { RxAvatar } from "react-icons/rx";
-import { IoMdSettings } from "react-icons/io";
+import React, { useState } from "react";
+import { FcAddDatabase } from "react-icons/fc";
+import { FcSettings } from "react-icons/fc";
+
+
 
 import { Link, NavLink } from "react-router-dom";
 import styles from "../styling/Header.module.css";
 
+import AddUserModal from "../features/modal/AddUserModal";
+import UsersList from "../features/users/UsersList";
+
 const Header = () => {
+
+  const [showAddUserMoal, setShowAddUserModal] = useState(false)
+
+  const OpenAddUserModal = () => {
+    setShowAddUserModal(true)
+  }
+
+  const handleCloseAddUserWindow = () => {
+    setShowAddUserModal(false)
+    
+  }
+
   return (
     <header>
       <div className={styles.logoSettingsDiv}>
@@ -14,7 +30,7 @@ const Header = () => {
           <h1>KanBan App</h1>
         </Link>
         <Link to="/settings" className="link">
-          <IoMdSettings className={styles.settingsBtn} role="button" />
+          <FcSettings className={styles.settingsBtn} role="button" />
         </Link>
       </div>
 
@@ -33,12 +49,14 @@ const Header = () => {
         <select name="filter" id="filter" className={styles.filter}>
           <option value="">Filter</option>
         </select>
+        {showAddUserMoal && (
+            <AddUserModal 
+              handleCloseAddUserWindow={handleCloseAddUserWindow}
+            />
+        )}
         <div className={styles.avatarDiv}>
-          <CiCirclePlus className={styles.addUserBtn} role="button" />
-          <RxAvatar className={styles.activeUser} role="button" />
-          <RxAvatar className={styles.userAvatar} role="button" />
-          <RxAvatar className={styles.userAvatar} role="button" />
-          <RxAvatar className={styles.userAvatar} role="button" />
+          <FcAddDatabase className={styles.addUserBtn} role="button" onClick={OpenAddUserModal}/>
+          <UsersList />
         </div>
       </div>
     </header>

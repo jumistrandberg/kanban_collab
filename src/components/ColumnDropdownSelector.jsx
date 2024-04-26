@@ -21,11 +21,21 @@ const ColumnDropdownSelector = ({ task }) => {
   }, [updatedTask]);
 
   return (
-    <select onChange={handleSelection} name="columns">
-      <option value={defaultColumn.id}>{defaultColumn.title}</option>
+    <select
+      className="moveTaskDropDown"
+      onChange={handleSelection}
+      name="columns"
+    >
+      <option className="moveTaskOption" value={defaultColumn.id}>
+        {defaultColumn.title}
+      </option>
       {columns.map((column) =>
         column.id !== defaultColumn.id ? (
-          <option value={column.id} key={`${column.id}dropDownSelector`}>
+          <option
+            className="moveTaskOption"
+            value={column.id}
+            key={`${column.id}dropDownSelector`}
+          >
             {column.title}
           </option>
         ) : null
