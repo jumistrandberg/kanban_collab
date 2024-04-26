@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
+import { PiTagFill } from "react-icons/pi";
 import styles from "../styling/TaskPopup.module.css";
 import { useDispatch } from "react-redux";
 import { updateTaskDetails, removeTask } from "../features/tasks/taskSlice";
 import ColumnDropdownSelector from "./ColumnDropdownSelector";
 
 import DateInput from "./DateInput";
+import MembersInput from "./MembersInput";
 import {
   MdSave,
   MdDelete,
@@ -23,6 +25,7 @@ const TaskPopup = ({ task, onClose }) => {
   const [descriptionClicked, setDescriptionClicked] = useState(false);
   const [isDeadlineShown, setIsDeadlineShown] = useState(false);
   const [isDoDateShown, setIsDoDateShown] = useState(false);
+  const [isMembersShown, setIsMembersShown] = useState(false);
 
   const handleDescriptionFocus = () => {
     setShowButtons(true);
@@ -52,6 +55,10 @@ const TaskPopup = ({ task, onClose }) => {
     onClose();
   };
 
+  const handleCloseMember = () => {
+    setIsMembersShown(!isMembersShown);
+  };
+
   return (
     <div className={styles.TaskPopupContainer}>
       <div className={styles.Overlay}></div>
@@ -66,6 +73,9 @@ const TaskPopup = ({ task, onClose }) => {
             onChange={handleTitleChange}
             className={styles.TitleInput}
           />
+        </div>
+        <div className={styles.assignedUsers_div}>
+          <h4 className={styles.ExtraTitle}>Members</h4>
         </div>
         <div className={styles.MainField}>
           <div className={styles.DescriptionContainer}>
@@ -96,15 +106,24 @@ const TaskPopup = ({ task, onClose }) => {
                 <MdDateRange /> Do Date
               </button>
               {isDoDateShown && <DateInput task={task} dateType="doDate" />}
-              <button className={`${styles.ExtraBtn} ${styles.MemberBtn}`}>
-                <MdPerson /> Member
+              <button
+                className={`${styles.ExtraBtn} ${styles.MemberBtn}`}
+                onClick={() => setIsMembersShown(!isMembersShown)}
+              >
+                <MdPerson /> Members
               </button>
+              <div className={styles.members_container}>
+                {isMembersShown && (
+                  <MembersInput handleCloseMember={handleCloseMember} />
+                )}
+              </div>
+
               <button className={`${styles.ExtraBtn} ${styles.Extra1Btn}`}>
-                <MdMoreHoriz /> Extra 1
+                <PiTagFill /> Labels
               </button>
-              <button className={`${styles.ExtraBtn} ${styles.Extra2Btn}`}>
+              {/* <button className={`${styles.ExtraBtn} ${styles.Extra2Btn}`}>
                 <MdMoreHoriz /> Extra 2
-              </button>
+              </button> */}
               <p className={styles.moveTaskText}>Move to column:</p>
               <ColumnDropdownSelector task={task} />
             </div>
