@@ -1,16 +1,22 @@
 import React from "react";
 import styles from "../styling/ListPage.module.css";
 import { useSelector } from "react-redux";
-const ListItem = ({ task }) => {
-  const columns = useSelector((state) => state.allColumnReducer.columns);
-  const columnName = columns.at(task.atColumnIndex);
-
+import ColumnDropdownSelector from "./ColumnDropdownSelector";
+import DropIndicator from "../components/DropIndicator";
+const ListItem = ({ task, handleDragStart }) => {
   return (
-    <div className={styles.listItem}>
-      <p>{task.title}</p>
-      <p>assigned</p>
-      <p>{columnName.title}</p>
-    </div>
+    <>
+      <DropIndicator beforeTaskId={task.id} columnId={"ListColumn"} />
+      <div
+        className={styles.listItem}
+        onDragStart={(e) => handleDragStart(e, task)}
+        draggable={true}
+      >
+        <p>{task.title}</p>
+        <p>assigned</p>
+        <ColumnDropdownSelector task={task} />
+      </div>
+    </>
   );
 };
 

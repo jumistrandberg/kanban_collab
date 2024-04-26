@@ -1,11 +1,22 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
+const getInitialColumns = () => {
+  const storedColumns = JSON.parse(localStorage.getItem("allColumns"));
+  if (storedColumns) {
+    return storedColumns;
+  } else {
+    const defaultColumns = [
+      { title: "Todo", id: nanoid(), atBoardIndex: 0 },
+      { title: "Doing", id: nanoid(), atBoardIndex: 0 },
+      { title: "Done", id: nanoid(), atBoardIndex: 0 },
+    ];
+    localStorage.setItem("allColumns", JSON.stringify(defaultColumns));
+    return defaultColumns;
+  }
+};
+
 const initialState = {
-  columns: JSON.parse(localStorage.getItem("allColumns")) || [
-    { title: "Todo", id: nanoid(), atBoardIndex: 0 },
-    { title: "Doing", id: nanoid(), atBoardIndex: 0 },
-    { title: "Done", id: nanoid(), atBoardIndex: 0 },
-  ],
+  columns: getInitialColumns(),
 };
 
 export const columnSlice = createSlice({

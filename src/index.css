@@ -18,3 +18,54 @@ button {
   text-decoration: none;
   color: white;
 }
+
+/* COLUMN  */
+/* styling for when dragging over */
+.column {
+  background-color: #eb8cac;
+  height: 80vh;
+  width: 30vw;
+  margin: 0.3em;
+  border-radius: 10px;
+  padding: 1em;
+  overflow: auto;
+}
+
+.active-column {
+  background-color: #a25f75;
+  height: 80vh;
+  width: 30vw;
+  margin: 0.3em;
+  border-radius: 10px;
+  padding: 1em;
+  overflow: auto;
+}
+
+/* styling for dragging the tasks */
+.drop {
+  margin-top: 1px;
+  height: 5px;
+  width: auto;
+  background-color: pink;
+  opacity: 0;
+}
+
+.active-drop {
+  margin-top: 1px;
+  height: 5px;
+  width: auto;
+  background-color: pink;
+  opacity: 1;
+}
+
+/* drop down menus for moving the task between columns */
+.moveTaskDropDown {
+  margin: 10px 10px 0px 0px;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1.2rem;
+  width: 8rem;
+  height: 40px;
+  /* border: none; */
+  /* background-color: rgb(214, 214, 214); */
+}

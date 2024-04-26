@@ -1,15 +1,60 @@
 .taskContainer {
-  border: 2px solid magenta;
-  margin: 5px 0;
-  background-color: white;
-  border-radius: 10px;
+  border: 2px solid #ce7c90;
+  margin: 3px 0px;
+  background-color: #ffffff;
+  border-radius: 8px;
   padding: 0.2rem;
+  height: 5em;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .deleteIcon {
   position: absolute;
   top: 5px;
-  right: 10px;
-  font-size: 1.3rem;
+  right: 8px;
+  font-size: 1.6rem;
+  color: #00000080;
+}
+
+.deleteIcon:hover {
+  color: #ff000060;
+  cursor: pointer;
+}
+
+.miniAvatar {
+  font-size: 1.5rem;
+  margin: 0px 4px 4px 0px;
+}
+
+.date_avatar_div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Dates on card */
+.cardDate_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1em 0.4em 0.1em 0.1em;
+  border-radius: 3px;
+}
+
+.passedDeadline {
+  width: fit-content;
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.nearDeadline {
+  width: fit-content;
+  background-color: #ffff0050;
+}
+
+.notNearDeadline {
+  width: fit-content;
+  background-color: #1a9c1a50;
 }
