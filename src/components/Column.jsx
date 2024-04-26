@@ -14,7 +14,7 @@ const Column = ({ columnId, title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const storedTitle = localStorage.getItem(`columnTitle_${columnId}`);
+    const storedTitle = localStorage.getItem(`columnTitle${columnId}`);
     if (storedTitle) {
       setNewTitle(storedTitle);
     }
@@ -31,7 +31,7 @@ const Column = ({ columnId, title }) => {
         title: newTitle,
       })
     );
-    localStorage.setItem(`columnTitle_${columnId}`, newTitle);
+    localStorage.setItem(`columnTitle${columnId}`, newTitle);
   };
 
   const ConfirmDeletion = () => {
