@@ -13,6 +13,17 @@ const Settings = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const settings = {
+      //Header includes Footer
+      header: headerColor,
+      headerText: headerTextColor,
+      column: columnColor,
+      columnText: columnTextColor,
+      popup: popupColor,
+      popupText: popupTextColor,
+      background: backgroundimg,
+    };
   };
 
   const handleDeleteUser = () => {};
