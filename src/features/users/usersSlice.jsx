@@ -22,24 +22,29 @@ const getInitialUsers = () => {
     users: getInitialUsers(),
   };
 
-const userSlice = createSlice({
+const saveUser = (user) => {
+    localStorage.setItem("allUsers", JSON.stringify(user))
+}  
+
+const usersSlice = createSlice({
     name: "users",
     initialState,
     reducers: {
-        // addNewUser: (state, action) => {
-        //     const newUser = {
-        //         id: nanoid(),
-        //         userFirstName: action.payload.userFirstName,
-        //         userLastName: action.payload.userLastName,
-        //         userUserName: action.payload.userUserName,
-        //         userAvatarColor: action.payload.userUserName,
-        //         userActive: action.payload, 
-        //     }
-        //     state.users.push(newUser)
-        //     localStorage.setItem("allUsers", JSON.stringify(state.users))
-        // },
+        addNewUser: (state, action) => {
+            const newUser = {
+                id: nanoid(),
+                userFirstName: action.payload.userFirstName,
+                userLastName: action.payload.userLastName,
+                userUserName: action.payload.userUserName,
+                userAvatarColor: '#8f999c',
+                userActive: false,
+            }
+            state.users.push(newUser)
+            localStorage.setItem("allUsers", JSON.stringify(state.users))
+        }
+    },
         // removeUser: (state, action) => {
-        //     state.users = state.users.filter(
+        //     state.users = state.users.filterz(
         //         (user) => user.id !== action.payload
         //     )
         //     localStorage.setItem("allUsers", JSON.stringify(state.users))
@@ -48,11 +53,11 @@ const userSlice = createSlice({
         //     state.users = state.users.map((user) => 
         //         user.id === action.payload.id ? action.payload : user)
         // }
-    }
+    
 })
 
 export const selectAllUsers = (state) => state.users
 
-//export const { addNewUser, removeUser, modifyUser } = userSlice.actions
+export const { addNewUser } = usersSlice.actions
 
-export default userSlice.reducer
+export default usersSlice.reducer

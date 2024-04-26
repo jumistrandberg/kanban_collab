@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { RxAvatar } from "react-icons/rx";
 import { IoMdSettings } from "react-icons/io";
+import { FcAddDatabase } from "react-icons/fc";
+import { FcSettings } from "react-icons/fc";
+
+
 
 import { Link, NavLink } from "react-router-dom";
 import styles from "../styling/Header.module.css";
@@ -34,7 +38,7 @@ const Header = () => {
           <h1>KanBan App</h1>
         </Link>
         <Link to="/settings" className="link">
-          <IoMdSettings className={styles.settingsBtn} role="button" />
+          <FcSettings className={styles.settingsBtn} role="button" />
         </Link>
       </div>
 
@@ -60,7 +64,7 @@ const Header = () => {
             />
         )}
         <div className={styles.avatarDiv}>
-          <CiCirclePlus className={styles.addUserBtn} role="button" onClick={OpenAddUserModal}/>
+          <FcAddDatabase className={styles.addUserBtn} role="button" onClick={OpenAddUserModal}/>
           {/* <RxAvatar className={styles.activeUser} role="button" />
           <RxAvatar className={styles.userAvatar} role="button" />
           <RxAvatar className={styles.userAvatar} role="button" />

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
-
+import { addNewUser } from "../users/usersSlice";
 import styles from "../../styling/AddUserModal.module.css"
 
 
@@ -11,21 +10,30 @@ const AddUserModal = () => {
         
         const dispatch = useDispatch()
 
-        const [firstName, setFirstName] = useState('')
-        const [lastName, setLastName] = useState('')
-        const [userName, setuserName] = useState('')
-        const [avatarColor, setAvatarColor] = useState('#8f999c')
+        const [newFirstName, setNewFirstName] = useState('')
+        const [newLastName, setNewLastName] = useState('')
+        const [newUserName, setNewUserName] = useState('')
+        const [newAvatarColor, setNewAvatarColor] = useState('#8f999c')
 
-        const onFirstNameChange = e => setFirstName(e.target.value)
-        const onLastNameChange = e => setLastName(e.target.value)
-        const onUserNameChange = e => setuserName(e.target.value)
-        const onAvatarColorChange = e => setAvatarColor(e.target.value)
+        const onFirstNameChange = e => setNewFirstName(e.target.value)
+        const onLastNameChange = e => setNewLastName(e.target.value)
+        const onUserNameChange = e => setNewUserName(e.target.value)
+        const onAvatarColorChange = e => setNewAvatarColor(e.target.value)
         
-        const onSaveUser = () => {
-            if (userName) {
-                console.log(userName)
+        const handleSaveUser = (e) => {
+            e.preventDefault()
+            const sendUser = {
+                userFirstName: newFirstName,
+                userLastName: newLastName,
+                userUserName: newUserName,
+                userAvatarColor: newAvatarColor
             }
+            dispatch(addNewUser(sendUser))
+            setNewFirstName('')
+            setNewLastName('')
+            setNewUserName('')
         }
+        
 
 
         return (
@@ -34,14 +42,14 @@ const AddUserModal = () => {
                     <div className={styles.addUserModal}>
                         <section className={styles.addUserModalSection}>
                             <h3 className={styles.addUserModalSectionTitle}>Add User</h3>
-                            <form className={styles.userForm}>
+                            <form onSubmit={handleSaveUser}     className={styles.userForm}>
                                 <label htmlFor="userFirstName" className={styles.userFormInputLabel}>First Name</label>
                                 <input 
                                     className={styles.userFormInput}
                                     type="text" 
                                     id="userFirstName"
                                     name="userFirstName"
-                                    value={firstName}
+                                    value={newFirstName}
                                     onChange={onFirstNameChange}
                                 />
                                 <label htmlFor="userLastName" className={styles.userFormInputLabel}>Last Name</label>
@@ -50,7 +58,7 @@ const AddUserModal = () => {
                                     type="text" 
                                     id="userLastName"
                                     name="userLastName"
-                                    value={lastName}
+                                    value={newLastName}
                                     onChange={onLastNameChange}
                                 />
                                 <label htmlFor="userUserName" className={styles.userFormInputLabel}>User Name</label>
@@ -60,7 +68,7 @@ const AddUserModal = () => {
                                     id="userUserName"
                                     name="userUserName"
                                     required
-                                    value={userName}
+                                    value={newUserName}
                                     onChange={onUserNameChange}
                                 />
                                 <label htmlFor="chooseColor" className={styles.userFormInputLabel}>Avatar Color</label>
@@ -69,11 +77,12 @@ const AddUserModal = () => {
                                         type="color" 
                                         id="chooseColor"
                                         name="chooseColor"
-                                        value={avatarColor}
+                                        value={newAvatarColor}
+                                        onChange={onAvatarColorChange}
                                     />
                                 <div className={styles.addUserModalButtonContainer}>
                                     <button
-                                        onClick={onSaveUser}
+                                        onClick={handleSaveUser}
                                         className={styles.addUserModalButton}
                                     >Confirm</button>
                                     <button
