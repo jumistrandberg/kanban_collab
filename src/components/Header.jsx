@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { CiCirclePlus } from "react-icons/ci";
-import { RxAvatar } from "react-icons/rx";
-import { IoMdSettings } from "react-icons/io";
 import { FcAddDatabase } from "react-icons/fc";
 import { FcSettings } from "react-icons/fc";
 
@@ -21,12 +18,7 @@ const Header = () => {
     setShowAddUserModal(true)
   }
 
-  const handleConfirmAddUser = () => {
-    console.log('test1')
-  }
-
   const handleCloseAddUserWindow = () => {
-    console.log('close')
     setShowAddUserModal(false)
     
   }
@@ -59,16 +51,11 @@ const Header = () => {
         </select>
         {showAddUserMoal && (
             <AddUserModal 
-              handleConfirmAddUser={handleConfirmAddUser}
               handleCloseAddUserWindow={handleCloseAddUserWindow}
             />
         )}
         <div className={styles.avatarDiv}>
           <FcAddDatabase className={styles.addUserBtn} role="button" onClick={OpenAddUserModal}/>
-          {/* <RxAvatar className={styles.activeUser} role="button" />
-          <RxAvatar className={styles.userAvatar} role="button" />
-          <RxAvatar className={styles.userAvatar} role="button" />
-          <RxAvatar className={styles.userAvatar} role="button" /> */}
           <UsersList />
         </div>
       </div>

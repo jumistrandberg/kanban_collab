@@ -43,17 +43,6 @@ const usersSlice = createSlice({
             localStorage.setItem("allUsers", JSON.stringify(state.users))
         }
     },
-        // removeUser: (state, action) => {
-        //     state.users = state.users.filterz(
-        //         (user) => user.id !== action.payload
-        //     )
-        //     localStorage.setItem("allUsers", JSON.stringify(state.users))
-        // },
-        // modifyUser: (state, action) => {
-        //     state.users = state.users.map((user) => 
-        //         user.id === action.payload.id ? action.payload : user)
-        // }
-    
 })
 
 export const selectAllUsers = (state) => state.users

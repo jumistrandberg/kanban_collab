@@ -6,7 +6,7 @@ import styles from "../../styling/AddUserModal.module.css"
 
 
 
-const AddUserModal = () => {
+const AddUserModal = ({ handleCloseAddUserWindow }) => {
         
         const dispatch = useDispatch()
 
@@ -20,6 +20,8 @@ const AddUserModal = () => {
         const onUserNameChange = e => setNewUserName(e.target.value)
         const onAvatarColorChange = e => setNewAvatarColor(e.target.value)
         
+        const canSave = Boolean(newUserName)
+
         const handleSaveUser = (e) => {
             e.preventDefault()
             const sendUser = {
@@ -32,6 +34,7 @@ const AddUserModal = () => {
             setNewFirstName('')
             setNewLastName('')
             setNewUserName('')
+            handleCloseAddUserWindow()
         }
         
 
@@ -67,7 +70,6 @@ const AddUserModal = () => {
                                     type="text" 
                                     id="userUserName"
                                     name="userUserName"
-                                    required
                                     value={newUserName}
                                     onChange={onUserNameChange}
                                 />
@@ -84,9 +86,10 @@ const AddUserModal = () => {
                                     <button
                                         onClick={handleSaveUser}
                                         className={styles.addUserModalButton}
+                                        disabled={!canSave}
                                     >Confirm</button>
                                     <button
-                                        
+                                        onClick={handleCloseAddUserWindow}
                                         className={styles.addUserModalButton}
                                     >Cancel</button>
                                 </div>

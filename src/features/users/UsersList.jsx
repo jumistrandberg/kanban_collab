@@ -1,15 +1,11 @@
 import { useSelector } from "react-redux";
-import { FaUser } from "react-icons/fa";
-import { selectAllUsers } from "./usersSlice";
 import styles from "../../styling/UsersList.module.css"
-import { FcPortraitMode } from "react-icons/fc";
 import { FcReadingEbook } from "react-icons/fc";
 
 
 
 
 const UsersList = () => {
-    //const users = useSelector(selectAllUsers)
 
     const users = useSelector((state) => state.allUsersReducer.users);
     console.log(users)
