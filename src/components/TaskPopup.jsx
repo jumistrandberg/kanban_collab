@@ -3,6 +3,8 @@ import { MdClose } from "react-icons/md";
 import styles from "../styling/TaskPopup.module.css";
 import { useDispatch } from "react-redux";
 import { updateTaskDetails, removeTask } from "../features/tasks/taskSlice";
+import ColumnDropdownSelector from "./ColumnDropdownSelector";
+
 import DateInput from "./DateInput";
 import {
   MdSave,
@@ -103,6 +105,8 @@ const TaskPopup = ({ task, onClose }) => {
               <button className={`${styles.ExtraBtn} ${styles.Extra2Btn}`}>
                 <MdMoreHoriz /> Extra 2
               </button>
+              <p className={styles.moveTaskText}>Move to column:</p>
+              <ColumnDropdownSelector task={task} />
             </div>
           </div>
         </div>
