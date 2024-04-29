@@ -26,15 +26,7 @@ function App() {
           {/* TODO - List är utkommenterat till Kuiper har skapat sidan */}
           <Route path="/list" element={<ListPage />} />
           <Route path="/admin" element={<Admin />} />
-          <Route
-            path="/settings"
-            element={
-              <Settings
-                setActiveUserTest={setActiveUser}
-                activeUserTest={activeUser}
-              />
-            }
-          />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<MissingPage />} />
         </Routes>
       </main>
