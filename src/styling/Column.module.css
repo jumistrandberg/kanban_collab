@@ -9,7 +9,7 @@
   background-color: #ffffff50;
   height: 3em;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 8px;
   margin-bottom: 1em;
 }
 
@@ -20,12 +20,16 @@
 }
 
 .delete {
-  font-size: 1.6em;
+  font-size: 1.8em;
   color: #ce7c90;
 }
 
-/* Column deletion modal styling */
+.delete:hover {
+  color: #ff000060;
+  cursor: pointer;
+}
 
+/* Column deletion modal styling */
 .deletionModal {
   z-index: 9;
   width: 50%;
