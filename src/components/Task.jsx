@@ -9,7 +9,6 @@ import DropIndicator from "./DropIndicator";
 
 import TaskPopup from "./TaskPopup";
 
-
 const Task = ({ columnId, handleDragStart, task }) => {
   const dispatch = useDispatch();
   const [showPopup, setShowPopup] = useState(false);
@@ -42,7 +41,6 @@ const Task = ({ columnId, handleDragStart, task }) => {
         {showPopup && <TaskPopup task={task} onClose={handleClose} />}
       </div>
     </>
-
   );
 };
 

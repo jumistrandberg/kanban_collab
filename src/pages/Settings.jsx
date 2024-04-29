@@ -11,16 +11,22 @@ const Settings = () => {
   const [activeUser, setActiveUser] = useState(
     allUsers.find((user) => user.userActive)
   );
-  const [headerColor, setHeaderColor] = useState("");
-  const [headerTextColor, setHeaderTextColor] = useState("");
-  const [columnColor, setColumnColor] = useState("");
-  const [columnTextColor, setColumnTextColor] = useState("");
-  const [popupColor, setPopupColor] = useState("");
-  const [popupTextColor, setPopupTextColor] = useState("");
+  const [headerColor, setHeaderColor] = useState(activeUser.settings.header);
+  const [headerTextColor, setHeaderTextColor] = useState(
+    activeUser.settings.headerText
+  );
+  const [columnColor, setColumnColor] = useState(activeUser.settings.column);
+  const [columnTextColor, setColumnTextColor] = useState(
+    activeUser.settings.columnText
+  );
+  const [popupColor, setPopupColor] = useState(activeUser.settings.popup);
+  const [popupTextColor, setPopupTextColor] = useState(
+    activeUser.settings.popupText
+  );
   const [backgroundimg, setBackgroundimg] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const settings = {
       //Header includes Footer
@@ -41,10 +47,7 @@ const Settings = () => {
   return (
     <>
       <form>
-        <div
-          className={styles.settingItemContainer}
-          style={{ backgroundColor: headerColor }}
-        >
+        <div className={styles.settingItemContainer}>
           <div className={styles.settingsItem}>
             <label htmlFor="Header">Header and footer</label>
             <input
