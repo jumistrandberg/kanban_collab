@@ -2,19 +2,17 @@ import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import { PiTagFill } from "react-icons/pi";
 import styles from "../styling/TaskPopup.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateTaskDetails, removeTask } from "../features/tasks/taskSlice";
 import ColumnDropdownSelector from "./ColumnDropdownSelector";
-import { FcReadingEbook } from "react-icons/fc";
 
 import DateInput from "./DateInput";
 import MembersInput from "./MembersInput";
 import { MdSchedule, MdDateRange, MdPerson } from "react-icons/md";
+import AssignedUsersDisplay from "./AssignedUsersDisplay";
 
 const TaskPopup = ({ task, onClose }) => {
   const dispatch = useDispatch();
-  const assignedUsers = task.assignedUsers;
-  const users = useSelector((state) => state.allUsersReducer.users);
   const [showButtons, setShowButtons] = useState(false);
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
@@ -55,19 +53,6 @@ const TaskPopup = ({ task, onClose }) => {
     setIsMembersShown(!isMembersShown);
   };
 
-  const usersToRender = users.filter((user) => assignedUsers.includes(user.id));
-
-  const renderUsers = usersToRender.map((user) => (
-    <div key={user.id} className={styles.renderedUser}>
-      <FcReadingEbook
-        role="button"
-        className={styles.userAvatar}
-        style={{ backgroundColor: user.userAvatarColor }}
-      />
-      <p className={styles.userTitle}>{user.userUserName}</p>
-    </div>
-  ));
-
   return (
     <div className={styles.TaskPopupContainer}>
       <div className={styles.Overlay}></div>
@@ -86,10 +71,12 @@ const TaskPopup = ({ task, onClose }) => {
 
         <div className={styles.MainField}>
           <div className={styles.DescriptionContainer}>
-            <div className={styles.assignedUsers_div}>
-              <h4 className={styles.ExtraTitle}>Members</h4>
-              <div className={styles.displayMembers_div}>{renderUsers}</div>
-            </div>
+            {task.assignedUsers.length > 0 ? (
+              <div className={styles.assignedUsers_div}>
+                <h4 className={styles.ExtraTitle}>Members:</h4>
+                <AssignedUsersDisplay isLargeView={true} task={task} />
+              </div>
+            ) : null}
             <h4 className={styles.DescriptionTitle}>Description</h4>
             <textarea
               value={description}
