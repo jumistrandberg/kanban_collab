@@ -1,10 +1,29 @@
 import { MdClose } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FcReadingEbook } from "react-icons/fc";
 import styles from "../styling/MembersInput.module.css";
+import { changeTask } from "../features/tasks/taskSlice";
 
-const MembersInput = ({ handleCloseMember }) => {
+const MembersInput = ({ handleCloseMember, task }) => {
   const users = useSelector((state) => state.allUsersReducer.users);
+  const dispatch = useDispatch();
+
+  const handleAssignUser = (userId) => {
+    const isUserAssigned = task.assignedUsers.includes(userId);
+    let updatedAssignedUsers;
+
+    if (isUserAssigned) {
+      updatedAssignedUsers = task.assignedUsers.filter((id) => id !== userId);
+    } else {
+      updatedAssignedUsers = [...task.assignedUsers, userId];
+    }
+    const updatedTask = { ...task, assignedUsers: updatedAssignedUsers };
+    dispatch(changeTask(updatedTask));
+  };
+
+  const checkAssigned = (userId) => {
+    return task.assignedUsers.includes(userId);
+  };
 
   return (
     <div className={styles.members_popup}>
@@ -30,6 +49,8 @@ const MembersInput = ({ handleCloseMember }) => {
               type="checkbox"
               name="assignedUser"
               id={`assignedUser${user.id}`}
+              checked={checkAssigned(user.id)}
+              onChange={(e) => handleAssignUser(user.id)}
             />
           </li>
         ))}

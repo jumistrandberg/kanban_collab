@@ -19,7 +19,7 @@ export const taskSlice = createSlice({
         text: "",
         doDate: "",
         deadline: "",
-        assignedUsers: "",
+        assignedUsers: [],
         atColumnId: action.payload.atColumnId,
       };
 
@@ -44,7 +44,6 @@ export const taskSlice = createSlice({
       state.tasks = action.payload;
       saveTasks(state.tasks);
     },
-
     updateTaskDetails: (state, action) => {
       const { id, title, description } = action.payload;
       const taskToUpdate = state.tasks.find((task) => task.id === id);
@@ -54,12 +53,10 @@ export const taskSlice = createSlice({
         saveTasks(state.tasks);
       }
     },
-
-
   },
 });
 
-export const { addTask, removeTask, changeTask, setTasks, updateTaskDetails } = taskSlice.actions;
-
+export const { addTask, removeTask, changeTask, setTasks, updateTaskDetails } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;
