@@ -85,7 +85,7 @@ const Task = ({ columnId, handleDragStart, task }) => {
       <DropIndicator beforeTaskId={task.id} columnId={columnId} />
       <div
         className={styles.taskContainer}
-        draggable={true}
+        draggable={showPopup ? false : true}
         onDragStart={(e) => handleDragStart(e, task)}
         onClick={handleClick}
       >
@@ -98,9 +98,8 @@ const Task = ({ columnId, handleDragStart, task }) => {
           {dateOutput}
           <RxAvatar className={styles.miniAvatar} />
         </div>
-
-        {showPopup && <TaskPopup task={task} onClose={handleClose} />}
       </div>
+      {showPopup && <TaskPopup task={task} onClose={handleClose} />}
     </>
   );
 };
