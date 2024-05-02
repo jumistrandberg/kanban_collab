@@ -15,6 +15,10 @@ const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
   const [active, setActive] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
+  const users = useSelector((state) => state.allUsersReducer.users);
+  //filteredUsers is the same for all tasks and therefore can tasks[0] be used
+  const filteredUsers = tasks.length > 0 ? tasks[0].filteredUsers : [];
+
   const dispatch = useDispatch();
 
   const ConfirmDeletion = () => {
@@ -24,8 +28,30 @@ const Column = ({ columnId, title }) => {
   const { handleDragStart, handleDragEnd, handleDragOver, handleDragLeave } =
     useDragAndDrop(columnId, "Board", setActive);
 
+  //filter tasks based on filtered users
+  let tasksFilteredByUsers;
+  if (tasks.length > 0) {
+    const allUsersSelected = filteredUsers.length === 0;
+    if (allUsersSelected) {
+      tasksFilteredByUsers = tasks;
+    } else {
+      tasksFilteredByUsers = tasks.filter((task) =>
+        task.assignedUsers.some((user) => filteredUsers.includes(user))
+      );
+    }
+  }
+  console.log("filterade matchningar: ", tasksFilteredByUsers);
+
   // filter tasks based on the columnId
-  const filteredTasks = tasks.filter((task) => task.atColumnId === columnId);
+  let tasksToDisplay;
+  if (tasksFilteredByUsers) {
+    tasksToDisplay = tasksFilteredByUsers.filter(
+      (task) => task.atColumnId === columnId
+    );
+  } else {
+    tasksToDisplay = tasks.filter((task) => task.atColumnId === columnId);
+  }
+  // const filteredTasks = tasks.filter((task) => task.atColumnId === columnId);
 
   return (
     // change class for column highlight when dragging over
@@ -40,7 +66,7 @@ const Column = ({ columnId, title }) => {
           <h2 className={styles.title}>{title}</h2>
           <DeleteBtn className={styles.delete} onClick={ConfirmDeletion} />
         </div>
-        {filteredTasks.map((task) => {
+        {tasksToDisplay.map((task) => {
           return (
             <Task
               columnId={columnId}

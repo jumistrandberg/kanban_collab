@@ -15,15 +15,26 @@
   font-size: 3rem;
 }
 
-.toolsDiv {
+.subHeader {
   background-color: #d0e1fc;
+  box-shadow: 0px 4px 4px #6d6d6d;
+  margin-bottom: 1em;
+}
+
+.toolsDiv {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   font-size: 2rem;
   padding: 0.3em;
-  box-shadow: 0px 4px 4px #6d6d6d;
-  margin-bottom: 1em;
+}
+
+.filtered_Users {
+  padding-left: 1.5em;
+}
+
+.filtered_Users span {
+  font-weight: normal;
 }
 
 .vueBtnDiv {
@@ -32,11 +43,29 @@
   gap: 0.3em;
 }
 
-.vueBtn,
-.filter {
+.buttons {
   font-size: 1.5rem;
   padding: 0 0.5em;
-  border-radius: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+}
+
+.button_links {
+  text-decoration: none;
+}
+
+.filter_container {
+  position: relative;
+}
+
+.filterBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+  width: 200px;
 }
 
 .avatarDiv {
