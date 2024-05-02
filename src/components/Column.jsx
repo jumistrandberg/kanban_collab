@@ -1,43 +1,25 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import Task from "./Task";
 import AddTask from "./AddTask";
 import styles from "../styling/Column.module.css";
 import useDragAndDrop from "../customHooks/useDragAndDrop";
 
 import { useSelector, useDispatch } from "react-redux";
+import { updateColumnTitle } from "../features/columns/columnSlice";
 import { setTasks } from "../features/tasks/taskSlice";
 
 import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
 import ConfirmDeletionModal from "./ConfirmDeletionModal";
 import DropIndicator from "./DropIndicator";
-import { changeColumn } from "../features/columns/columnSlice";
 
 const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
   const [active, setActive] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
-  const [newTitle, setNewTitle] = useState(title);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const storedTitle = localStorage.getItem(`columnTitle${columnId}`);
-    if (storedTitle) {
-      setNewTitle(storedTitle);
-    }
-  }, [columnId]);
-
   const handleTitleChange = (e) => {
-    setNewTitle(e.target.value);
-  };
-
-  const handleTitleUpdate = () => {
-    dispatch(
-      changeColumn({
-        id: columnId,
-        title: newTitle,
-      })
-    );
-    localStorage.setItem(`columnTitle${columnId}`, newTitle);
+    dispatch(updateColumnTitle({ id: columnId, title: e.target.value }));
   };
 
   const ConfirmDeletion = () => {
@@ -63,9 +45,9 @@ const Column = ({ columnId, title }) => {
           <input
             className={styles.title}
             type="text"
-            value={newTitle}
+            value={title}
             onChange={handleTitleChange}
-            onBlur={handleTitleUpdate}
+            onBlur={handleTitleChange}
           />
           <DeleteBtn className={styles.delete} onClick={ConfirmDeletion} />
         </div>
