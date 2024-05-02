@@ -71,7 +71,7 @@ const usersSlice = createSlice({
         userActive: false,
       };
       state.users.push(newUser);
-      localStorage.setItem("allUsers", JSON.stringify(state.users));
+      saveUsers(state.users);
     },
     changeUserColor: (state, action) => {
       const newColor = {
@@ -100,11 +100,20 @@ const usersSlice = createSlice({
       );
       saveUsers(updateUserlist);
     },
+    changeActiveUser: (state, action) => {
+      const { id } = action.payload;
+      const userToActive = state.users.find((user) => user.id === id);
+      if (userToActive) {
+        userToActive.userActive = !userToActive.userActive;
+      }
+      saveUsers(state.users);
+    },
   },
 });
 
 export const selectAllUsers = (state) => state.users;
 
-export const { addNewUser, deleteUser, updateUser } = usersSlice.actions;
+export const { addNewUser, deleteUser, updateUser, changeActiveUser } =
+  usersSlice.actions;
 
 export default usersSlice.reducer;
