@@ -62,10 +62,8 @@ button {
 .moveTaskDropDown {
   margin: 10px 10px 0px 0px;
   border-radius: 5px;
-  padding: 5px;
-  font-size: 1.2rem;
+  padding: 3px;
+  font-size: 1rem;
   width: 8rem;
-  height: 40px;
-  /* border: none; */
-  /* background-color: rgb(214, 214, 214); */
+  height: 2rem;
 }

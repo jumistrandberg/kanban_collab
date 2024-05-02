@@ -3,6 +3,7 @@ import styles from "../styling/ListPage.module.css";
 import { useSelector } from "react-redux";
 import ColumnDropdownSelector from "./ColumnDropdownSelector";
 import DropIndicator from "../components/DropIndicator";
+import AssignedUsersDisplay from "./AssignedUsersDisplay";
 const ListItem = ({ task, handleDragStart }) => {
   return (
     <>
@@ -12,8 +13,8 @@ const ListItem = ({ task, handleDragStart }) => {
         onDragStart={(e) => handleDragStart(e, task)}
         draggable={true}
       >
-        <p>{task.title}</p>
-        <p>assigned</p>
+        <h4>{task.title}</h4>
+        <AssignedUsersDisplay isLargeView={true} task={task} />
         <ColumnDropdownSelector task={task} />
       </div>
     </>

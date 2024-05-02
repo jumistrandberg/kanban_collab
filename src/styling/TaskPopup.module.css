@@ -82,12 +82,19 @@ h4 {
   outline: 2px solid rgb(182, 182, 182);
 }
 
+.assignedUsers_div {
+  width: fit-content;
+  position: relative;
+  border-radius: 10px;
+  margin-bottom: 1.5em;
+}
+
 .MainField {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: start;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 }
 
 .DescriptionContainer {
@@ -150,6 +157,10 @@ h4 {
 
 .ExtraBtn:hover {
   background-color: rgb(182, 182, 182);
+}
+
+.members_container {
+  position: relative;
 }
 
 .BtnContainer {
