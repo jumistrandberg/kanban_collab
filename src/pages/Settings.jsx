@@ -3,17 +3,19 @@ import styles from "../styling/Setting.module.css";
 import useChangeSettings from "../customHooks/useChangeSettings";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, updateUser } from "../features/users/usersSlice.jsx";
+import useActiveUser from "../customHooks/useActiveUser.js";
 
 const Settings = () => {
-  const allUsers = useSelector((state) => state.allUsersReducer.users);
+  const activeUser = useSelector((state) =>
+    state.allUsersReducer.users.find((u) => u.userActive)
+  );
+  console.log(activeUser);
   const dispatch = useDispatch();
 
-  const [activeUser, setActiveUser] = useState(
-    allUsers.find((user) => user.userActive)
-  );
+  const [updateUsers, setUpdateUsers] = useState(activeUser);
   const [headerColor, setHeaderColor] = useState(activeUser.settings.header);
   const [headerTextColor, setHeaderTextColor] = useState(
-    activeUser.settings.headerText
+    updateUsers.settings.headerText
   );
   const [columnColor, setColumnColor] = useState(activeUser.settings.column);
   const [columnTextColor, setColumnTextColor] = useState(
@@ -26,8 +28,8 @@ const Settings = () => {
   const [backgroundimg, setBackgroundimg] = useState("");
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-
+    e.preventDefault();
+    setUpdateUsers(activeUser);
     const settings = {
       //Header includes Footer
       header: headerColor,
@@ -38,10 +40,20 @@ const Settings = () => {
       popupText: popupTextColor,
       background: backgroundimg,
     };
-    setActiveUser((prev) => ({ ...prev, settings: settings }));
+    setUpdateUsers((prev) => ({ ...prev, settings: settings }));
   };
   useEffect(() => {
-    dispatch(updateUser(activeUser));
+    dispatch(updateUser(updateUsers));
+  }, [updateUsers]);
+
+  useEffect(() => {
+    setUpdateUsers(activeUser);
+    setHeaderColor(activeUser.settings.header);
+    setHeaderTextColor(activeUser.settings.headerText);
+    setColumnColor(activeUser.settings.column);
+    setColumnTextColor(activeUser.settings.columnText);
+    setPopupColor(activeUser.settings.popup);
+    setPopupTextColor(activeUser.settings.popupText);
   }, [activeUser]);
 
   return (
@@ -69,7 +81,7 @@ const Settings = () => {
         </div>
         <div className={styles.settingItemContainer}>
           <div className={styles.settingsItem}>
-            <label htmlFor="Header">Column color</label>
+            <label htmlFor="ColumnColor">Column color</label>
             <input
               onChange={(e) => useChangeSettings(e, setColumnColor)}
               id="ColumnColor"
@@ -78,7 +90,7 @@ const Settings = () => {
             />
           </div>
           <div className={styles.settingsItem}>
-            <label htmlFor="Header">Column color TEXT</label>
+            <label htmlFor="ColumnTextColor">Column color TEXT</label>
             <input
               onChange={(e) => useChangeSettings(e, setColumnTextColor)}
               id="ColumnTextColor"
@@ -89,7 +101,7 @@ const Settings = () => {
         </div>
         <div className={styles.settingItemContainer}>
           <div className={styles.settingsItem}>
-            <label htmlFor="Header">Popup Color</label>
+            <label htmlFor="PopupColor">Popup Color</label>
             <input
               onChange={(e) => useChangeSettings(e, setPopupColor)}
               id="PopupColor"
@@ -98,7 +110,7 @@ const Settings = () => {
             />
           </div>
           <div className={styles.settingsItem}>
-            <label htmlFor="Header">Popup Color TEXT</label>
+            <label htmlFor="PopupTextColor">Popup Color TEXT</label>
             <input
               onChange={(e) => useChangeSettings(e, setPopupTextColor)}
               id="PopupTextColor"

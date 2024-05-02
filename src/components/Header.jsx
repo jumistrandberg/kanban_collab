@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FcAddDatabase } from "react-icons/fc";
 import { FcSettings } from "react-icons/fc";
-
+import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import styles from "../styling/Header.module.css";
 
@@ -11,6 +11,7 @@ import useActiveUser from "../customHooks/useActiveUser";
 
 const Header = () => {
   const activeUser = useActiveUser();
+  // console.log(activeUser);
   const [showAddUserMoal, setShowAddUserModal] = useState(false);
 
   const OpenAddUserModal = () => {

@@ -12,7 +12,15 @@ const getInitialUsers = () => {
         userLastName: "Jorden",
         userUserName: "Jesper",
         userAvatarColor: "#2d3436",
-        settings: {},
+        settings: {
+          header: "#5756b9",
+          headerText: "#FFFFFF",
+          column: "#eb8cac",
+          columnText: "#000000",
+          popup: "#ffffff",
+          popupText: "#000000",
+          background: "",
+        },
         userActive: true,
       },
       {
@@ -21,7 +29,15 @@ const getInitialUsers = () => {
         userLastName: "Pour",
         userUserName: "Kai",
         userAvatarColor: "#6ab048",
-        settings: {},
+        settings: {
+          header: "#5756b9",
+          headerText: "#FFFFFF",
+          column: "#eb8cac",
+          columnText: "#000000",
+          popup: "#ffffff",
+          popupText: "#000000",
+          background: "",
+        },
         userActive: false,
       },
       {
@@ -30,7 +46,15 @@ const getInitialUsers = () => {
         userLastName: "Kampner",
         userUserName: "Nya",
         userAvatarColor: "#f9ca24",
-        settings: {},
+        settings: {
+          header: "#5756b9",
+          headerText: "#FFFFFF",
+          column: "#eb8cac",
+          columnText: "#000000",
+          popup: "#ffffff",
+          popupText: "#000000",
+          background: "",
+        },
         userActive: false,
       },
       {
@@ -39,7 +63,15 @@ const getInitialUsers = () => {
         userLastName: "Johnsson",
         userUserName: "Sora",
         userAvatarColor: "#4834d4",
-        settings: {},
+        settings: {
+          header: "#5756b9",
+          headerText: "#FFFFFF",
+          column: "#eb8cac",
+          columnText: "#000000",
+          popup: "#ffffff",
+          popupText: "#000000",
+          background: "",
+        },
         userActive: false,
       },
     ];
@@ -67,7 +99,15 @@ const usersSlice = createSlice({
         userLastName: action.payload.userLastName,
         userUserName: action.payload.userUserName,
         userAvatarColor: action.payload.userAvatarColor,
-        settings: {},
+        settings: {
+          header: "#5756b9",
+          headerText: "#FFFFFF",
+          column: "#eb8cac",
+          columnText: "#000000",
+          popup: "#ffffff",
+          popupText: "#000000",
+          background: "",
+        },
         userActive: false,
       };
       state.users.push(newUser);
@@ -89,23 +129,33 @@ const usersSlice = createSlice({
         return;
       }
       updateUserlist[0].userActive = true;
+      state.users = updateUserlist;
       saveUsers(updateUserlist);
     },
     updateUser: (state, action) => {
       const updateUser = action.payload;
-      const updateUserlist = state.users.map((user) =>
-        user.id == updateUser.id
-          ? { ...user, settings: updateUser.settings }
-          : { ...user }
-      );
-      saveUsers(updateUserlist);
+
+      const tobe = state.users.find((user) => user.id == updateUser.id);
+
+      tobe.settings = updateUser.settings;
+
+      // const updateUserlist = state.users.map((user) =>
+      //   user.id == updateUser.id
+      //     ? { ...user, settings: updateUser.settings }
+      //     : { ...user }
+      // );
+      console.log(tobe);
+      saveUsers(state.users);
     },
     changeActiveUser: (state, action) => {
       const { id } = action.payload;
       const userToActive = state.users.find((user) => user.id === id);
-      if (userToActive) {
-        userToActive.userActive = !userToActive.userActive;
+      const oldActiveUser = state.users.find((user) => user.userActive);
+      if (userToActive.id == oldActiveUser.id) {
+        return;
       }
+      oldActiveUser.userActive = false;
+      userToActive.userActive = true;
       saveUsers(state.users);
     },
   },

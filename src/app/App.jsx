@@ -10,13 +10,11 @@ import Admin from "../pages/Admin";
 import MissingPage from "../pages/MissingPage";
 import Settings from "../pages/Settings";
 import ListPage from "../pages/ListPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useActiveUser from "../customHooks/useActiveUser";
 // import List from "../pages/List";
 
 function App() {
-  // const [activeUser, setActiveUser] = useState(useActiveUser());
-
   return (
     <>
       <Header />
