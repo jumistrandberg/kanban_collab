@@ -9,7 +9,6 @@ const Settings = () => {
   const activeUser = useSelector((state) =>
     state.allUsersReducer.users.find((u) => u.userActive)
   );
-  console.log(activeUser);
   const dispatch = useDispatch();
 
   const [updateUsers, setUpdateUsers] = useState(activeUser);

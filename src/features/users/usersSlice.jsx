@@ -135,16 +135,10 @@ const usersSlice = createSlice({
     updateUser: (state, action) => {
       const updateUser = action.payload;
 
-      const tobe = state.users.find((user) => user.id == updateUser.id);
+      const currentUser = state.users.find((user) => user.id == updateUser.id);
 
-      tobe.settings = updateUser.settings;
+      currentUser.settings = updateUser.settings;
 
-      // const updateUserlist = state.users.map((user) =>
-      //   user.id == updateUser.id
-      //     ? { ...user, settings: updateUser.settings }
-      //     : { ...user }
-      // );
-      console.log(tobe);
       saveUsers(state.users);
     },
     changeActiveUser: (state, action) => {
