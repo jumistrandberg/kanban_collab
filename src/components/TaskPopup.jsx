@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
+import { PiTagFill } from "react-icons/pi";
 import styles from "../styling/TaskPopup.module.css";
 import { useDispatch } from "react-redux";
 import { updateTaskDetails, removeTask } from "../features/tasks/taskSlice";
@@ -7,14 +8,9 @@ import ColumnDropdownSelector from "./ColumnDropdownSelector";
 
 import useActiveUser from "../customHooks/useActiveUser";
 import DateInput from "./DateInput";
-import {
-  MdSave,
-  MdDelete,
-  MdSchedule,
-  MdDateRange,
-  MdPerson,
-  MdMoreHoriz,
-} from "react-icons/md";
+import MembersInput from "./MembersInput";
+import { MdSchedule, MdDateRange, MdPerson } from "react-icons/md";
+import AssignedUsersDisplay from "./AssignedUsersDisplay";
 
 const TaskPopup = ({ task, onClose }) => {
   const activeUser = useActiveUser();
@@ -25,6 +21,7 @@ const TaskPopup = ({ task, onClose }) => {
   const [descriptionClicked, setDescriptionClicked] = useState(false);
   const [isDeadlineShown, setIsDeadlineShown] = useState(false);
   const [isDoDateShown, setIsDoDateShown] = useState(false);
+  const [isMembersShown, setIsMembersShown] = useState(false);
 
   const handleDescriptionFocus = () => {
     setShowButtons(true);
@@ -54,6 +51,10 @@ const TaskPopup = ({ task, onClose }) => {
     onClose();
   };
 
+  const handleCloseMember = () => {
+    setIsMembersShown(!isMembersShown);
+  };
+
   return (
     <div className={styles.TaskPopupContainer}>
       <div className={styles.Overlay}></div>
@@ -77,8 +78,15 @@ const TaskPopup = ({ task, onClose }) => {
             className={styles.TitleInput}
           />
         </div>
+
         <div className={styles.MainField}>
           <div className={styles.DescriptionContainer}>
+            {task.assignedUsers.length > 0 ? (
+              <div className={styles.assignedUsers_div}>
+                <h4 className={styles.ExtraTitle}>Members:</h4>
+                <AssignedUsersDisplay isLargeView={true} task={task} />
+              </div>
+            ) : null}
             <h4 className={styles.DescriptionTitle}>Description</h4>
             <textarea
               value={description}
@@ -107,14 +115,23 @@ const TaskPopup = ({ task, onClose }) => {
                 <MdDateRange /> Do Date
               </button>
               {isDoDateShown && <DateInput task={task} dateType="doDate" />}
-              <button className={`${styles.ExtraBtn} ${styles.MemberBtn}`}>
-                <MdPerson /> Member
+              <button
+                className={`${styles.ExtraBtn} ${styles.MemberBtn}`}
+                onClick={() => setIsMembersShown(!isMembersShown)}
+              >
+                <MdPerson /> Members
               </button>
+              <div className={styles.members_container}>
+                {isMembersShown && (
+                  <MembersInput
+                    handleCloseMember={handleCloseMember}
+                    task={task}
+                  />
+                )}
+              </div>
+
               <button className={`${styles.ExtraBtn} ${styles.Extra1Btn}`}>
-                <MdMoreHoriz /> Extra 1
-              </button>
-              <button className={`${styles.ExtraBtn} ${styles.Extra2Btn}`}>
-                <MdMoreHoriz /> Extra 2
+                <PiTagFill /> Labels
               </button>
               <p className={styles.moveTaskText}>Move to column:</p>
               <ColumnDropdownSelector task={task} />

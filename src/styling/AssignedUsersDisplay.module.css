@@ -1,0 +1,25 @@
+.displayMembers_div {
+  margin: 0.5em 0.1em 0.1em;
+  display: flex;
+  align-items: center;
+}
+
+.renderedUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userAvatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-bottom: 0.3em;
+}
+
+.userAvatarSmall {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}

@@ -7,6 +7,7 @@ import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
 import { FiClock } from "react-icons/fi";
 import { CgSandClock } from "react-icons/cg";
 import { format } from "date-fns";
+import AssignedUsersDisplay from "./AssignedUsersDisplay";
 
 import DropIndicator from "./DropIndicator";
 
@@ -66,11 +67,13 @@ const Task = ({ columnId, handleDragStart, task }) => {
     if (reduxTask.deadline) {
       const currentDate = new Date();
       const differenceInTime = deadlineDate.getTime() - currentDate.getTime();
-      const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+      const differenceInDays = Math.floor(
+        differenceInTime / (1000 * 3600 * 24)
+      );
 
       if (differenceInDays < 0) {
         setDeadlineColor(styles.passedDeadline); // Deadline passed
-      } else if (differenceInDays <= 1) {
+      } else if (differenceInDays <= 2) {
         setDeadlineColor(styles.nearDeadline); // Deadline today
       } else if (differenceInDays >= 3) {
         setDeadlineColor(styles.notNearDeadline); // 3 days left
@@ -96,7 +99,7 @@ const Task = ({ columnId, handleDragStart, task }) => {
         />
         <div className={styles.date_avatar_div}>
           {dateOutput}
-          <RxAvatar className={styles.miniAvatar} />
+          <AssignedUsersDisplay isLargeView={false} task={task} />
         </div>
       </div>
       {showPopup && <TaskPopup task={task} onClose={handleClose} />}
