@@ -121,7 +121,7 @@ const Settings = () => {
         <div className={styles.settingItemContainer}>
           <div className={styles.setBackground}>
             background img
-            <input type="file" />
+            <input type="file" value={"choose file"} />
           </div>
         </div>
 
