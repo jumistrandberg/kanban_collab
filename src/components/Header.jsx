@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import Filter from "./Filter";
+import useActiveUser from "../customHooks/useActiveUser";
 
 //icons
 import { FcAddDatabase } from "react-icons/fc";
@@ -15,8 +17,6 @@ import styles from "../styling/Header.module.css";
 //components
 import AddUserModal from "../features/modal/AddUserModal";
 import UsersList from "../features/users/UsersList";
-import Filter from "./Filter";
-import useActiveUser from "../customHooks/useActiveUser";
 
 const Header = () => {
   const activeUser = useActiveUser();
@@ -45,6 +45,10 @@ const Header = () => {
 
   const handleToggleFilter = () => {
     setIsFilterShown(!isFilterShown);
+  };
+
+  const closeFilter = () => {
+    setIsFilterShown(false);
   };
 
   const handleButtonClick = (button) => {
@@ -124,6 +128,9 @@ const Header = () => {
           </div>
         ) : null}
       </div>
+      {isFilterShown && (
+        <div className={styles.overlay} onClick={closeFilter}></div>
+      )}
     </header>
   );
 };
