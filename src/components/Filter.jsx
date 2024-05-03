@@ -11,7 +11,7 @@ const Filter = () => {
   const handleFilterUsers = (userId) => {
     let newFilteredUsers;
     if (!tasks || tasks.length === 0) {
-      newFilteredUsers = [userId];
+      alert("There are no tasks to filter");
     } else {
       const task = tasks[0];
       const filteredUsers = task.filteredUsers || [];
@@ -31,7 +31,7 @@ const Filter = () => {
 
   //filteredUsers is the same for all tasks and therefore can tasks[0] be used
   const checkFilteredUsers = (userId) => {
-    if (tasks) {
+    if (tasks.length > 0) {
       return tasks[0]?.filteredUsers.includes(userId);
     }
   };
