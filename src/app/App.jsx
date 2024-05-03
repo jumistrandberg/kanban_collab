@@ -10,6 +10,7 @@ import Admin from "../pages/Admin";
 import MissingPage from "../pages/MissingPage";
 import Settings from "../pages/Settings";
 import ListPage from "../pages/ListPage";
+import About from "../pages/About"
 import { useEffect, useState } from "react";
 import useActiveUser from "../customHooks/useActiveUser";
 // import List from "../pages/List";
@@ -24,6 +25,7 @@ function App() {
           {/* TODO - List är utkommenterat till Kuiper har skapat sidan */}
           <Route path="/list" element={<ListPage />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/about" element={<About />}/>
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<MissingPage />} />
         </Routes>
