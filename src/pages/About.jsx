@@ -6,7 +6,7 @@ const About = () => {
         <div className={styles.container}>
             <div className={styles.topSection}>
                 <img src="../src/assets/LiUm-logo.png" alt="LiUm Logo" className={styles.logo}/>
-                <h1>KanBan App</h1>
+                <h1>LiUm KanBan App</h1>
             </div>
             <div className={styles.content}>
                 <div className={styles.middleSection1}>
