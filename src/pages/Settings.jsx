@@ -126,7 +126,7 @@ const Settings = () => {
         </div>
 
         <div className={styles.settingItemContainer}>
-          <input onClick={handleSubmit} type="submit" />
+          <input onClick={handleSubmit} type="submit" value={"submit"}/>
         </div>
       </form>
 
@@ -141,15 +141,4 @@ const Settings = () => {
   );
 };
 
-// background img
-
-// column color
-
-// popup/task background color and text
-
-// font-family
-
-// header and footer color
-
-// delete user
 export default Settings;
