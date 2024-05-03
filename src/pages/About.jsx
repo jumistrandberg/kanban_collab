@@ -1,11 +1,13 @@
 import styles from "../styling/AboutPage.module.css"
+import logo  from "../assets/LiUm-logo.png"
+import preview from "../assets/preview-app.png"
 
 const About = () => {
   return (
     <>  
         <div className={styles.container}>
             <div className={styles.topSection}>
-                <img src="../src/assets/LiUm-logo.png" alt="LiUm Logo" className={styles.logo}/>
+                <img src={logo} alt="LiUm Logo" className={styles.logo}/>
                 <h1>LiUm KanBan App</h1>
             </div>
             <div className={styles.content}>
@@ -23,7 +25,7 @@ const About = () => {
                     <p>LiUm is multimodal company comprised of two main groups which help costumers create fully functional programs from their ideas, even the smallest. All of our team members are fullstack developers who together deploy all different solutions and handle all types of related problems. </p>
                 </div>
                 <div className={styles.middleSection3}>
-                    <img src="../src/assets/preview-app.png" alt="app-preview" />
+                    <img src={preview} alt="app-preview" />
                 </div>
             </div>
         </div>
