@@ -46,9 +46,18 @@ export const columnSlice = createSlice({
         column.id === action.payload.id ? action.payload : column
       );
     },
+    updateColumnTitle: (state, action) => {
+      const { id, title } = action.payload;
+      const columnToUpdate = state.columns.find((column) => column.id === id);
+      if (columnToUpdate) {
+        columnToUpdate.title = title;
+        localStorage.setItem("allColumns", JSON.stringify(state.columns));
+      }
+    },
   },
 });
 
-export const { addColumn, removeColumn, changeColumn } = columnSlice.actions;
+export const { addColumn, removeColumn, changeColumn, updateColumnTitle } =
+  columnSlice.actions;
 
 export default columnSlice.reducer;
