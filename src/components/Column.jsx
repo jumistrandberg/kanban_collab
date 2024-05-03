@@ -4,20 +4,26 @@ import AddTask from "./AddTask";
 import styles from "../styling/Column.module.css";
 import useDragAndDrop from "../customHooks/useDragAndDrop";
 
-import { useSelector } from "react-redux";
-//använder vi setTasks någonstans???
-import { setTasks } from "../features/tasks/taskSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { updateColumnTitle } from "../features/columns/columnSlice";
 
 import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
 import ConfirmDeletionModal from "./ConfirmDeletionModal";
 import DropIndicator from "./DropIndicator";
 
+import useActiveUser from "../customHooks/useActiveUser";
+
 const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
   const [active, setActive] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
+  const activeUser = useActiveUser();
   //filteredUsers is the same for all tasks and therefore can tasks[0] be used
   const filteredUsers = tasks.length > 0 ? tasks[0].filteredUsers : [];
+
+  const handleTitleChange = (e) => {
+    dispatch(updateColumnTitle({ id: columnId, title: e.target.value }));
+  };
 
   const ConfirmDeletion = () => {
     setShowModal(true);
@@ -47,6 +53,7 @@ const Column = ({ columnId, title }) => {
   return (
     // change class for column highlight when dragging over
     <section
+      style={{ backgroundColor: activeUser.settings.column }}
       className={!active ? "column" : "active-column"}
       onDragOver={(e) => handleDragOver(e, columnId)}
       onDragLeave={handleDragLeave}
@@ -54,7 +61,14 @@ const Column = ({ columnId, title }) => {
     >
       <div className={styles.column}>
         <div className={styles.titleContainer}>
-          <h2 className={styles.title}>{title}</h2>
+          <input
+            className={styles.title}
+            style={{ color: activeUser.settings.columnText }}
+            type="text"
+            value={title}
+            onChange={handleTitleChange}
+            onBlur={handleTitleChange}
+          />
           <DeleteBtn className={styles.delete} onClick={ConfirmDeletion} />
         </div>
         {tasksToDisplay.map((task) => {

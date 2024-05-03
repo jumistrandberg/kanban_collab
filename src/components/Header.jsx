@@ -16,9 +16,10 @@ import styles from "../styling/Header.module.css";
 import AddUserModal from "../features/modal/AddUserModal";
 import UsersList from "../features/users/UsersList";
 import Filter from "./Filter";
+import useActiveUser from "../customHooks/useActiveUser";
 
 const Header = () => {
-  const [showAddUserMoal, setShowAddUserModal] = useState(false);
+  const activeUser = useActiveUser();
   const [isFilterShown, setIsFilterShown] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
   const users = useSelector((state) => state.allUsersReducer.users);
@@ -34,6 +35,8 @@ const Header = () => {
   const OpenAddUserModal = () => {
     setShowAddUserModal(true);
   };
+    setShowAddUserModal(true);
+  };
 
   const handleCloseAddUserWindow = () => {
     setShowAddUserModal(false);
@@ -45,9 +48,14 @@ const Header = () => {
 
   return (
     <header>
-      <div className={styles.logoSettingsDiv}>
+      <div
+        className={styles.logoSettingsDiv}
+        style={{
+          backgroundColor: activeUser.settings.header,
+        }}
+      >
         <Link to="/" className="link">
-          <h1>KanBan App</h1>
+          <h1 style={{ color: activeUser.settings.headerText }}>KanBan App</h1>
         </Link>
         <Link to="/settings" className="link">
           <FcSettings className={styles.settingsBtn} role="button" />
