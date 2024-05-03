@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../features/tasks/taskSlice";
 import { setFilteredUsers } from "../features/tasks/taskSlice";
-//need column index as a prop
+import styles from "../styling/Column.module.css";
+
 const AddTask = ({ columnId }) => {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
@@ -29,15 +30,18 @@ const AddTask = ({ columnId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.addTask_form}>
       <input
+        className={styles.addTask_input}
         type="text"
         id=""
         value={newTitle}
         onChange={(e) => setNewTitle(e.target.value)}
       />
 
-      <button type="submit">Add task</button>
+      <button type="submit" className={styles.addTask_btn}>
+        Add task
+      </button>
     </form>
   );
 };
