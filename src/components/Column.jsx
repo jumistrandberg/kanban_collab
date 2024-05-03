@@ -4,7 +4,8 @@ import AddTask from "./AddTask";
 import styles from "../styling/Column.module.css";
 import useDragAndDrop from "../customHooks/useDragAndDrop";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+//använder vi setTasks någonstans???
 import { setTasks } from "../features/tasks/taskSlice";
 
 import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
@@ -15,11 +16,8 @@ const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
   const [active, setActive] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
-  const users = useSelector((state) => state.allUsersReducer.users);
   //filteredUsers is the same for all tasks and therefore can tasks[0] be used
   const filteredUsers = tasks.length > 0 ? tasks[0].filteredUsers : [];
-
-  const dispatch = useDispatch();
 
   const ConfirmDeletion = () => {
     setShowModal(true);
@@ -29,10 +27,10 @@ const Column = ({ columnId, title }) => {
     useDragAndDrop(columnId, "Board", setActive);
 
   //filter tasks based on filtered users
-  let tasksFilteredByUsers;
+  let tasksFilteredByUsers = [];
   if (tasks.length > 0) {
-    const allUsersSelected = filteredUsers.length === 0;
-    if (allUsersSelected) {
+    const noFilters = filteredUsers.length === 0;
+    if (noFilters) {
       tasksFilteredByUsers = tasks;
     } else {
       tasksFilteredByUsers = tasks.filter((task) =>
@@ -40,18 +38,11 @@ const Column = ({ columnId, title }) => {
       );
     }
   }
-  console.log("filterade matchningar: ", tasksFilteredByUsers);
 
   // filter tasks based on the columnId
-  let tasksToDisplay;
-  if (tasksFilteredByUsers) {
-    tasksToDisplay = tasksFilteredByUsers.filter(
-      (task) => task.atColumnId === columnId
-    );
-  } else {
-    tasksToDisplay = tasks.filter((task) => task.atColumnId === columnId);
-  }
-  // const filteredTasks = tasks.filter((task) => task.atColumnId === columnId);
+  const tasksToDisplay = tasksFilteredByUsers.filter(
+    (task) => task.atColumnId === columnId
+  );
 
   return (
     // change class for column highlight when dragging over

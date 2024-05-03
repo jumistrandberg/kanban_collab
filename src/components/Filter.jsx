@@ -30,6 +30,7 @@ const Filter = () => {
     dispatch(setFilteredUsers(newFilteredUsers));
   };
 
+  //filteredUsers is the same for all tasks and therefore can tasks[0] be used
   const checkFilteredUsers = (userId) => {
     return tasks[0].filteredUsers.includes(userId);
   };
@@ -57,6 +58,12 @@ const Filter = () => {
           </li>
         ))}
       </ul>
+      <button
+        className={styles.resetBtn}
+        onClick={() => dispatch(setFilteredUsers([]))}
+      >
+        Unselect All
+      </button>
     </div>
   );
 };

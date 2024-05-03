@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { Link, NavLink } from "react-router-dom";
+
+//icons
 import { FcAddDatabase } from "react-icons/fc";
 import { FcSettings } from "react-icons/fc";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { PiListBold } from "react-icons/pi";
 import { HiOutlineViewColumns } from "react-icons/hi2";
 
-import { Link, NavLink } from "react-router-dom";
+//styling
 import styles from "../styling/Header.module.css";
 
+//components
 import AddUserModal from "../features/modal/AddUserModal";
 import UsersList from "../features/users/UsersList";
 import Filter from "./Filter";
@@ -21,6 +25,7 @@ const Header = () => {
   //filteredUsers is the same for all tasks and therefore can tasks[0] be used
   const filteredUsers = tasks.length > 0 ? tasks[0].filteredUsers : [];
 
+  //get filtered userNames from id
   const filteredUserNames = users
     .filter((user) => filteredUsers.includes(user.id))
     .map((user) => user.userUserName)
