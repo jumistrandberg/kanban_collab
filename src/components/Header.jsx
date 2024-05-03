@@ -1,18 +1,37 @@
-import React, { useEffect, useState } from "react";
-import { FcAddDatabase } from "react-icons/fc";
-import { FcSettings } from "react-icons/fc";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+
+//icons
+import { FcAddDatabase } from "react-icons/fc";
+import { FcSettings } from "react-icons/fc";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { PiListBold } from "react-icons/pi";
+import { HiOutlineViewColumns } from "react-icons/hi2";
+
+//styling
 import styles from "../styling/Header.module.css";
 
+//components
 import AddUserModal from "../features/modal/AddUserModal";
 import UsersList from "../features/users/UsersList";
+import Filter from "./Filter";
 import useActiveUser from "../customHooks/useActiveUser";
 
 const Header = () => {
   const activeUser = useActiveUser();
-  // console.log(activeUser);
-  const [showAddUserMoal, setShowAddUserModal] = useState(false);
+  const [isFilterShown, setIsFilterShown] = useState(false);
+  const [showAddUserModal, setShowAddUserModal] = useState(false);
+  const tasks = useSelector((state) => state.allTaskReducer.tasks);
+  const users = useSelector((state) => state.allUsersReducer.users);
+  //filteredUsers is the same for all tasks and therefore can tasks[0] be used
+  const filteredUsers = tasks.length > 0 ? tasks[0].filteredUsers : [];
+
+  //get filtered userNames from id
+  const filteredUserNames = users
+    .filter((user) => filteredUsers.includes(user.id))
+    .map((user) => user.userUserName)
+    .join(", ");
 
   const OpenAddUserModal = () => {
     setShowAddUserModal(true);
@@ -20,6 +39,10 @@ const Header = () => {
 
   const handleCloseAddUserWindow = () => {
     setShowAddUserModal(false);
+  };
+
+  const handleToggleFilter = () => {
+    setIsFilterShown(!isFilterShown);
   };
 
   return (
@@ -38,29 +61,50 @@ const Header = () => {
         </Link>
       </div>
 
-      <div className={styles.toolsDiv}>
-        <div className={styles.vueBtnDiv}>
-          <NavLink to="/">
-            <button className={styles.vueBtn}>Board</button>
-          </NavLink>
-          <NavLink to="/list">
-            <button className={styles.vueBtn}>List</button>
-          </NavLink>
+      <div className={styles.subHeader}>
+        <div className={styles.toolsDiv}>
+          <div className={styles.vueBtnDiv}>
+            <NavLink to="/" className={styles.button_links}>
+              <button className={styles.buttons}>
+                Board <HiOutlineViewColumns />
+              </button>
+            </NavLink>
+            <NavLink to="/list" className={styles.button_links}>
+              <button className={styles.buttons}>
+                List <PiListBold />
+              </button>
+            </NavLink>
+          </div>
+
+          <div className={styles.filter_container}>
+            <button
+              className={styles.buttons + " " + styles.filterBtn}
+              onClick={handleToggleFilter}
+            >
+              Filter <MdOutlineKeyboardArrowDown />
+            </button>
+            {isFilterShown && <Filter />}
+          </div>
+
+          {showAddUserModal && (
+            <AddUserModal handleCloseAddUserWindow={handleCloseAddUserWindow} />
+          )}
+          <div className={styles.avatarDiv}>
+            <FcAddDatabase
+              className={styles.addUserBtn}
+              role="button"
+              onClick={OpenAddUserModal}
+            />
+            <UsersList />
+          </div>
         </div>
-        <select name="filter" id="filter" className={styles.filter}>
-          <option value="">Filter</option>
-        </select>
-        {showAddUserMoal && (
-          <AddUserModal handleCloseAddUserWindow={handleCloseAddUserWindow} />
-        )}
-        <div className={styles.avatarDiv}>
-          <FcAddDatabase
-            className={styles.addUserBtn}
-            role="button"
-            onClick={OpenAddUserModal}
-          />
-          <UsersList />
-        </div>
+        {filteredUsers.length > 0 ? (
+          <div className={styles.filtered_Users}>
+            <h4>
+              Filtered Users: <span>{filteredUserNames}</span>
+            </h4>
+          </div>
+        ) : null}
       </div>
     </header>
   );

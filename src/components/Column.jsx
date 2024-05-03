@@ -6,7 +6,6 @@ import useDragAndDrop from "../customHooks/useDragAndDrop";
 
 import { useSelector, useDispatch } from "react-redux";
 import { updateColumnTitle } from "../features/columns/columnSlice";
-import { setTasks } from "../features/tasks/taskSlice";
 
 import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
 import ConfirmDeletionModal from "./ConfirmDeletionModal";
@@ -19,7 +18,8 @@ const Column = ({ columnId, title }) => {
   const [active, setActive] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
   const activeUser = useActiveUser();
-  const dispatch = useDispatch();
+  //filteredUsers is the same for all tasks and therefore can tasks[0] be used
+  const filteredUsers = tasks.length > 0 ? tasks[0].filteredUsers : [];
 
   const handleTitleChange = (e) => {
     dispatch(updateColumnTitle({ id: columnId, title: e.target.value }));
@@ -32,8 +32,23 @@ const Column = ({ columnId, title }) => {
   const { handleDragStart, handleDragEnd, handleDragOver, handleDragLeave } =
     useDragAndDrop(columnId, "Board", setActive);
 
+  //filter tasks based on filtered users
+  let tasksFilteredByUsers = [];
+  if (tasks.length > 0) {
+    const noFilters = filteredUsers.length === 0;
+    if (noFilters) {
+      tasksFilteredByUsers = tasks;
+    } else {
+      tasksFilteredByUsers = tasks.filter((task) =>
+        task.assignedUsers.some((user) => filteredUsers.includes(user))
+      );
+    }
+  }
+
   // filter tasks based on the columnId
-  const filteredTasks = tasks.filter((task) => task.atColumnId === columnId);
+  const tasksToDisplay = tasksFilteredByUsers.filter(
+    (task) => task.atColumnId === columnId
+  );
 
   return (
     // change class for column highlight when dragging over
@@ -56,7 +71,7 @@ const Column = ({ columnId, title }) => {
           />
           <DeleteBtn className={styles.delete} onClick={ConfirmDeletion} />
         </div>
-        {filteredTasks.map((task) => {
+        {tasksToDisplay.map((task) => {
           return (
             <Task
               columnId={columnId}

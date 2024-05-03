@@ -21,6 +21,7 @@ export const taskSlice = createSlice({
         deadline: "",
         assignedUsers: [],
         atColumnId: action.payload.atColumnId,
+        filteredUsers: action.payload.filteredUsers,
       };
 
       state.tasks.push(newTask);
@@ -53,10 +54,22 @@ export const taskSlice = createSlice({
         saveTasks(state.tasks);
       }
     },
+    setFilteredUsers: (state, action) => {
+      state.tasks.forEach((task) => {
+        task.filteredUsers = action.payload;
+      });
+      saveTasks(state.tasks);
+    },
   },
 });
 
-export const { addTask, removeTask, changeTask, setTasks, updateTaskDetails } =
-  taskSlice.actions;
+export const {
+  addTask,
+  removeTask,
+  changeTask,
+  setFilteredUsers,
+  setTasks,
+  updateTaskDetails,
+} = taskSlice.actions;
 
 export default taskSlice.reducer;
