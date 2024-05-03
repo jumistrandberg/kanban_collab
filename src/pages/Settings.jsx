@@ -3,7 +3,6 @@ import styles from "../styling/Setting.module.css";
 import useChangeSettings from "../customHooks/useChangeSettings";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser, updateUser } from "../features/users/usersSlice.jsx";
-import useActiveUser from "../customHooks/useActiveUser.js";
 
 const Settings = () => {
   const activeUser = useSelector((state) =>
@@ -57,10 +56,11 @@ const Settings = () => {
 
   return (
     <>
+    <div className={styles.settingsContainer}>
       <form>
         <div className={styles.settingItemContainer}>
-          <div className={styles.settingsItem}>
-            <label htmlFor="Header">Header and footer</label>
+          <div className={styles.settingsItem} style={{backgroundColor: headerColor}}>
+            <label htmlFor="Header">Header and Footer</label>
             <input
               onChange={(e) => useChangeSettings(e, setHeaderColor)}
               id="Header"
@@ -68,8 +68,8 @@ const Settings = () => {
               type="color"
             />
           </div>
-          <div className={styles.settingsItem}>
-            <label htmlFor="headerText">Header and footer Text Color</label>
+          <div className={styles.settingsItem} style={{backgroundColor: headerColor}}>
+            <label htmlFor="headerText">Header and Footer Text Color</label>
             <input
               id="headerText"
               value={headerTextColor}
@@ -79,8 +79,8 @@ const Settings = () => {
           </div>
         </div>
         <div className={styles.settingItemContainer}>
-          <div className={styles.settingsItem}>
-            <label htmlFor="ColumnColor">Column color</label>
+          <div className={styles.settingsItem} style={{backgroundColor: headerColor}}> 
+            <label htmlFor="ColumnColor">Column Color</label>
             <input
               onChange={(e) => useChangeSettings(e, setColumnColor)}
               id="ColumnColor"
@@ -88,8 +88,8 @@ const Settings = () => {
               type="color"
             />
           </div>
-          <div className={styles.settingsItem}>
-            <label htmlFor="ColumnTextColor">Column color TEXT</label>
+          <div className={styles.settingsItem}style={{backgroundColor: headerColor}}> 
+            <label htmlFor="ColumnTextColor">Column Text Color</label>
             <input
               onChange={(e) => useChangeSettings(e, setColumnTextColor)}
               id="ColumnTextColor"
@@ -98,8 +98,8 @@ const Settings = () => {
             />
           </div>
         </div>
-        <div className={styles.settingItemContainer}>
-          <div className={styles.settingsItem}>
+        <div className={styles.settingItemContainer} >
+          <div className={styles.settingsItem} style={{backgroundColor: headerColor}}>
             <label htmlFor="PopupColor">Popup Color</label>
             <input
               onChange={(e) => useChangeSettings(e, setPopupColor)}
@@ -108,8 +108,8 @@ const Settings = () => {
               type="color"
             />
           </div>
-          <div className={styles.settingsItem}>
-            <label htmlFor="PopupTextColor">Popup Color TEXT</label>
+          <div className={styles.settingsItem} style={{backgroundColor: headerColor}} >
+            <label htmlFor="PopupTextColor">Popup Text Color</label>
             <input
               onChange={(e) => useChangeSettings(e, setPopupTextColor)}
               id="PopupTextColor"
@@ -118,24 +118,25 @@ const Settings = () => {
             />
           </div>
         </div>
-        <div className={styles.settingItemContainer}>
+        <div className={styles.settingItemContainer} >
           <div className={styles.setBackground}>
-            <label htmlFor="backgroundimg">Background img</label>
-            <input type="file" id="backgroundimg" />
+            <label htmlFor="backgroundimg">Background image</label>
+            <input className={styles.backgroundSubmitButton}  id="backgroundimg"  type="file" />
           </div>
         </div>
 
-        <div className={styles.settingItemContainer}>
-          <input onClick={handleSubmit} type="submit" value={"submit"}/>
+        <div  className={styles.settingItemContainer}>
+          <input style={{backgroundColor: headerColor}} className={styles.submitButton} onClick={handleSubmit} type="submit" value={"submit"}/>
         </div>
       </form>
 
       <div className={styles.settingItemContainer}>
-        <div className={styles.deleteUser}>
-          <button onClick={() => dispatch(deleteUser(activeUser.id))}>
+        <div  className={styles.deleteUser}>
+          <button style={{backgroundColor: headerColor}} className={styles.deleteButton} onClick={() => dispatch(deleteUser(activeUser.id))}>
             Delete this user
           </button>
         </div>
+      </div>
       </div>
     </>
   );
