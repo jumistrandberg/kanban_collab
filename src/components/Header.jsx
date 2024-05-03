@@ -21,6 +21,7 @@ import useActiveUser from "../customHooks/useActiveUser";
 const Header = () => {
   const activeUser = useActiveUser();
   const [isFilterShown, setIsFilterShown] = useState(false);
+  const [showAddUserModal, setShowAddUserModal] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
   const users = useSelector((state) => state.allUsersReducer.users);
   //filteredUsers is the same for all tasks and therefore can tasks[0] be used
@@ -33,8 +34,6 @@ const Header = () => {
     .join(", ");
 
   const OpenAddUserModal = () => {
-    setShowAddUserModal(true);
-  };
     setShowAddUserModal(true);
   };
 
@@ -87,7 +86,7 @@ const Header = () => {
             {isFilterShown && <Filter />}
           </div>
 
-          {showAddUserMoal && (
+          {showAddUserModal && (
             <AddUserModal handleCloseAddUserWindow={handleCloseAddUserWindow} />
           )}
           <div className={styles.avatarDiv}>

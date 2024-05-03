@@ -26,13 +26,14 @@ const Filter = () => {
         newFilteredUsers = [...filteredUsers, userId];
       }
     }
-    console.log(newFilteredUsers);
     dispatch(setFilteredUsers(newFilteredUsers));
   };
 
   //filteredUsers is the same for all tasks and therefore can tasks[0] be used
   const checkFilteredUsers = (userId) => {
-    return tasks[0].filteredUsers.includes(userId);
+    if (tasks) {
+      return tasks[0]?.filteredUsers.includes(userId);
+    }
   };
 
   return (
