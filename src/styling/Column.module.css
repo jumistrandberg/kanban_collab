@@ -66,14 +66,15 @@
 /* Column deletion modal styling */
 .deletionModal {
   z-index: 9;
-  width: 50%;
-  height: 50%;
+  width: 45%;
+  height: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   background-color: white;
   font-size: 2rem;
+  border-radius: 10px;
 }
 
 .modalContainer {
@@ -98,12 +99,48 @@
 
 .modalButtonContainer {
   display: flex;
-  gap: 10rem;
+  gap: 3rem;
 }
 
 .modalButton {
   background: none;
-  border: 2px solid black;
   padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: transparent;
   border-radius: 10px;
+  font-weight: bold;
+}
+
+.modalConfirmButton {
+  background-color: #fcd0d0;
+}
+
+.modalConfirmButton:hover {
+  background-color: #c5a2a2;
+}
+
+.modalCloseButton {
+  background-color: #d0e1fc;
+}
+
+.modalCloseButton:hover {
+  background-color: #a0adc3;
+}
+
+@media only screen and (max-width: 800px) {
+  .deletionModal {
+    z-index: 9;
+    width: 70%;
+    height: 40%;
+    font-size: 1.5rem;
+  }
+
+  .modalButtonContainer {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .modalButton {
+    padding: 0.8rem 1.8rem;
+  }
 }
