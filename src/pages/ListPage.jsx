@@ -34,7 +34,6 @@ const ListPage = () => {
       onDragLeave={handleDragLeave}
       onDrop={handleDragEnd}
     >
-      <h2>List view</h2>
       {tasksFilteredByUsers.map((task) => (
         <ListItem
           key={`listItem-${task.id}`}
