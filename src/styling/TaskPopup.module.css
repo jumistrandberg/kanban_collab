@@ -69,6 +69,7 @@ h4 {
 }
 
 .TitleInput {
+  background-color: #ffffff90;
   text-align: center;
   font-size: 2rem;
   width: 70%;
@@ -103,6 +104,7 @@ h4 {
 }
 
 .DescriptionInput {
+  background-color: #ffffff90;
   font-size: 16px;
   padding: 5px;
   border: 2px solid transparent;

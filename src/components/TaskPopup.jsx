@@ -6,12 +6,14 @@ import { useDispatch } from "react-redux";
 import { updateTaskDetails, removeTask } from "../features/tasks/taskSlice";
 import ColumnDropdownSelector from "./ColumnDropdownSelector";
 
+import useActiveUser from "../customHooks/useActiveUser";
 import DateInput from "./DateInput";
 import MembersInput from "./MembersInput";
 import { MdSchedule, MdDateRange, MdPerson } from "react-icons/md";
 import AssignedUsersDisplay from "./AssignedUsersDisplay";
 
 const TaskPopup = ({ task, onClose }) => {
+  const activeUser = useActiveUser();
   const dispatch = useDispatch();
   const [showButtons, setShowButtons] = useState(false);
   const [title, setTitle] = useState(task.title);
@@ -56,12 +58,20 @@ const TaskPopup = ({ task, onClose }) => {
   return (
     <div className={styles.TaskPopupContainer}>
       <div className={styles.Overlay}></div>
-      <div className={styles.Popup} onClick={(e) => e.stopPropagation()}>
+      <div
+        className={styles.Popup}
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          backgroundColor: activeUser.settings.popup,
+          color: activeUser.settings.popupText,
+        }}
+      >
         <button className={styles.Close} onClick={handleClose}>
           <MdClose />
         </button>
         <div className={styles.TitleContainer}>
           <input
+            style={{ color: activeUser.settings.popupText }}
             type="text"
             value={title}
             onChange={handleTitleChange}
@@ -85,6 +95,7 @@ const TaskPopup = ({ task, onClose }) => {
               className={`${styles.DescriptionInput} ${
                 descriptionClicked && styles.Focused
               }`}
+              style={{ color: activeUser.settings.popupText }}
             ></textarea>
           </div>
           <div className={styles.ExtraBtnContainer}>

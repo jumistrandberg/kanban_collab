@@ -12,10 +12,13 @@ import { MdOutlineDeleteForever as DeleteBtn } from "react-icons/md";
 import ConfirmDeletionModal from "./ConfirmDeletionModal";
 import DropIndicator from "./DropIndicator";
 
+import useActiveUser from "../customHooks/useActiveUser";
+
 const Column = ({ columnId, title }) => {
   const [showModal, setShowModal] = useState(false);
   const [active, setActive] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
+  const activeUser = useActiveUser();
   const dispatch = useDispatch();
 
   const handleTitleChange = (e) => {
@@ -35,6 +38,7 @@ const Column = ({ columnId, title }) => {
   return (
     // change class for column highlight when dragging over
     <section
+      style={{ backgroundColor: activeUser.settings.column }}
       className={!active ? "column" : "active-column"}
       onDragOver={(e) => handleDragOver(e, columnId)}
       onDragLeave={handleDragLeave}
@@ -44,6 +48,7 @@ const Column = ({ columnId, title }) => {
         <div className={styles.titleContainer}>
           <input
             className={styles.title}
+            style={{ color: activeUser.settings.columnText }}
             type="text"
             value={title}
             onChange={handleTitleChange}
