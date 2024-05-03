@@ -41,8 +41,7 @@
 
 .addTask_form {
   display: flex;
-  justify-content: space-between;
-  /* gap: 0.5em; */
+  gap: 0.2em;
 }
 
 .addTask_input {
