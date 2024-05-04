@@ -125,6 +125,7 @@ h4 {
   justify-content: flex-end;
   align-items: flex-end;
   width: 9rem;
+  margin-top: 2.9rem;
   margin-left: 1rem;
 }
 
@@ -209,7 +210,7 @@ h4 {
 
 @media only screen and (max-width: 800px) {
   .Popup {
-    max-width: 26rem;
+    max-width: 22rem;
     width: 75%;
     padding-bottom: 15rem;
     height: auto;
@@ -224,9 +225,9 @@ h4 {
 
   .TitleInput {
     font-size: 1.2rem;
-    width: 70%;
+    width: 73%;
     padding: 5px;
-    margin-top: 10px;
+    margin-top: 15px;
   }
 
   .MainField {
@@ -242,12 +243,13 @@ h4 {
 
   .DescriptionContainer {
     margin-left: 0;
-    width: 90%;
+    padding-top: 25px;
+    width: 74%;
     margin-top: -1rem;
   }
 
   .DescriptionInput {
-    height: 18vh;
+    height: 15vh;
   }
 
   .BtnContainer {

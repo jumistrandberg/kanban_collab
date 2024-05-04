@@ -1,17 +1,17 @@
-.user{
-    width: 40px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.user {
+  width: 40px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.userAvatar:hover{
-    transform: translateY(-4px);
-    transition: 0.6s all ease;
-    
+.userAvatar:hover {
+  transform: translateY(-4px);
+  transition: 0.6s all ease;
+  cursor: pointer;
 }
-.userTitle{
-    font-size: 15px;
+.userTitle {
+  font-size: 15px;
 }
