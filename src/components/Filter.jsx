@@ -36,6 +36,11 @@ const Filter = () => {
     }
   };
 
+  const handleCheckboxClick = (e, userId) => {
+    e.stopPropagation();
+    handleFilterUsers(userId);
+  };
+
   return (
     <div className={styles.members_popup}>
       <ul className={styles.members_ul}>
@@ -54,7 +59,7 @@ const Filter = () => {
               name="assignedUser"
               id={`assignedUser${user.id}`}
               checked={checkFilteredUsers(user.id)}
-              onChange={(e) => handleFilterUsers(user.id)}
+              onChange={(e) => handleCheckboxClick(e, user.id)}
             />
           </li>
         ))}

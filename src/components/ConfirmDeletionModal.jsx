@@ -81,13 +81,13 @@ const ConfirmDeletionModal = ({ setShowModal, columnId, tasks }) => {
           <div className={styles.modalButtonContainer}>
             <button
               onClick={handleConfirmDelete}
-              className={styles.modalButton}
+              className={`${styles.modalConfirmButton} ${styles.modalButton}`}
             >
               Confirm
             </button>
             <button
               onClick={handleCloseModalWindow}
-              className={styles.modalButton}
+              className={`${styles.modalCloseButton} ${styles.modalButton}`}
             >
               Cancel
             </button>

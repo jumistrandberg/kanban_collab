@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+.column {
+  margin: 0 auto;
+}
+
 .titleContainer {
   display: flex;
   flex-direction: row;
@@ -35,17 +39,42 @@
   cursor: pointer;
 }
 
+.addTask_form {
+  display: flex;
+  gap: 0.2em;
+}
+
+.addTask_input {
+  border-radius: 5px;
+  border: 2px solid #ce7c90;
+}
+
+.addTask_btn {
+  border-radius: 5px;
+  border: 2px solid #ce7c90;
+  font-size: 14px;
+  font-weight: 700;
+  color: #030303;
+  padding: 0.2em 0.6em;
+  background-color: rgb(242, 237, 237);
+}
+
+.addTask_btn :hover {
+  background-color: #a0adc3;
+}
+
 /* Column deletion modal styling */
 .deletionModal {
   z-index: 9;
-  width: 50%;
-  height: 50%;
+  width: 45%;
+  height: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   background-color: white;
   font-size: 2rem;
+  border-radius: 10px;
 }
 
 .modalContainer {
@@ -70,12 +99,48 @@
 
 .modalButtonContainer {
   display: flex;
-  gap: 10rem;
+  gap: 3rem;
 }
 
 .modalButton {
   background: none;
-  border: 2px solid black;
   padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: transparent;
   border-radius: 10px;
+  font-weight: bold;
+}
+
+.modalConfirmButton {
+  background-color: #fcd0d0;
+}
+
+.modalConfirmButton:hover {
+  background-color: #c5a2a2;
+}
+
+.modalCloseButton {
+  background-color: #d0e1fc;
+}
+
+.modalCloseButton:hover {
+  background-color: #a0adc3;
+}
+
+@media only screen and (max-width: 800px) {
+  .deletionModal {
+    z-index: 9;
+    width: 70%;
+    height: 40%;
+    font-size: 1.5rem;
+  }
+
+  .modalButtonContainer {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .modalButton {
+    padding: 0.8rem 1.8rem;
+  }
 }
