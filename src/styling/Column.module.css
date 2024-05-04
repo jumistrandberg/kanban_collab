@@ -29,14 +29,14 @@
 
 .delete {
   font-size: 1.8em;
-  color: #ce7c90;
+ opacity: 0.4;
 }
 
 .delete:hover {
-  color: #ffffff50;
+  opacity: 1.3;
   cursor: pointer;
   font-size: 1.8em;
-  
+  scale: 1.2;
 }
 
 .addTask_form {
