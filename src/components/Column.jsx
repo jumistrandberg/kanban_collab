@@ -53,8 +53,10 @@ const Column = ({ columnId, title }) => {
   return (
     // change class for column highlight when dragging over
     <section
-      style={{ backgroundColor: activeUser.settings.column }}
-      className={!active ? "column" : "active-column"}
+      
+      className={"column"}
+      // when the task is hovered over a colum, this code will change the color more transparent so the user can see on which column it is
+      style={!active ?{ backgroundColor: activeUser.settings.column }: { backgroundColor: activeUser.settings.column+"80"}}
       onDragOver={(e) => handleDragOver(e, columnId)}
       onDragLeave={handleDragLeave}
       onDrop={handleDragEnd}
@@ -69,7 +71,7 @@ const Column = ({ columnId, title }) => {
             onChange={handleTitleChange}
             onBlur={handleTitleChange}
           />
-          <DeleteBtn className={styles.delete} onClick={ConfirmDeletion} />
+          <DeleteBtn className={styles.delete} style={{color: activeUser.settings.column }} onClick={ConfirmDeletion} />
         </div>
         {tasksToDisplay.map((task) => {
           return (

@@ -29,10 +29,10 @@
 }
 
 .delete:hover {
-  color: #ff000060;
+  color: #ffffff50;
   cursor: pointer;
   font-size: 1.8em;
-  cursor: pointer;
+  
 }
 
 /* Column deletion modal styling */
