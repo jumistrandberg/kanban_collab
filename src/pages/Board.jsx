@@ -33,7 +33,6 @@ const Board = () => {
 
   return (
     <section>
-      <h2>Board name</h2>
       <div className={styles.boardContainer}>
         {columns.map((column, index) => (
           <Column
