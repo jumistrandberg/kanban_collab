@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Filter from "./Filter";
 import useActiveUser from "../customHooks/useActiveUser";
 
@@ -22,6 +22,7 @@ const Header = () => {
   const activeUser = useActiveUser();
   const [isFilterShown, setIsFilterShown] = useState(false);
   const [showAddUserModal, setShowAddUserModal] = useState(false);
+  const location = useLocation();
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
   const users = useSelector((state) => state.allUsersReducer.users);
   //filteredUsers is the same for all tasks and therefore can tasks[0] be used
@@ -49,6 +50,10 @@ const Header = () => {
     setIsFilterShown(false);
   };
 
+  const handleButtonClick = (button) => {
+    setActiveButton(button);
+  };
+
   return (
     <header>
       <div
@@ -68,16 +73,26 @@ const Header = () => {
       <div className={styles.subHeader}>
         <div className={styles.toolsDiv}>
           <div className={styles.vueBtnDiv}>
-            <NavLink to="/" className={styles.button_links}>
-              <button className={styles.buttons}>
-                Board <HiOutlineViewColumns />
-              </button>
-            </NavLink>
-            <NavLink to="/list" className={styles.button_links}>
-              <button className={styles.buttons}>
-                List <PiListBold />
-              </button>
-            </NavLink>
+            <Link
+              to="/"
+              className={
+                location.pathname === "/"
+                  ? styles.activeButton
+                  : styles.viewButtons
+              }
+            >
+              Board <HiOutlineViewColumns />
+            </Link>
+            <Link
+              to="/list"
+              className={
+                location.pathname === "/list"
+                  ? styles.activeButton
+                  : styles.viewButtons
+              }
+            >
+              List <PiListBold />
+            </Link>
           </div>
 
           <div className={styles.filter_container}>
