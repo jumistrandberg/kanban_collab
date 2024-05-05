@@ -22,7 +22,6 @@ const Header = () => {
   const activeUser = useActiveUser();
   const [isFilterShown, setIsFilterShown] = useState(false);
   const [showAddUserModal, setShowAddUserModal] = useState(false);
-  const [activeButton, setActiveButton] = useState("board");
   const location = useLocation();
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
   const users = useSelector((state) => state.allUsersReducer.users);
@@ -81,7 +80,6 @@ const Header = () => {
                   ? styles.activeButton
                   : styles.viewButtons
               }
-              onClick={() => handleButtonClick("board")} // Update activeButton state
             >
               Board <HiOutlineViewColumns />
             </Link>
@@ -92,7 +90,6 @@ const Header = () => {
                   ? styles.activeButton
                   : styles.viewButtons
               }
-              onClick={() => handleButtonClick("list")} // Update activeButton state
             >
               List <PiListBold />
             </Link>
