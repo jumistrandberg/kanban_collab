@@ -56,8 +56,8 @@ const TaskPopup = ({ task, onClose }) => {
   };
 
   return (
-    <div className={styles.TaskPopupContainer} onClick={handleClose}>
-      <div className={styles.Overlay}></div>
+    <div className={styles.TaskPopupContainer}>
+      <div className={styles.Overlay} onClick={handleClose}></div>
       <div
         className={styles.Popup}
         onClick={(e) => console.log("styles.popup")}
