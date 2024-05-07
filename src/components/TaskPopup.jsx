@@ -76,6 +76,7 @@ const TaskPopup = ({ task, onClose }) => {
             value={title}
             onChange={handleTitleChange}
             className={styles.TitleInput}
+            onClick={handleDescriptionFocus}
           />
         </div>
 
