@@ -6,7 +6,6 @@ import DropIndicator from "../components/DropIndicator";
 import AssignedUsersDisplay from "./AssignedUsersDisplay";
 import TaskPopup from "./TaskPopup";
 const ListItem = ({ task, handleDragStart }) => {
-
   const [showPopup, setShowPopup] = useState(false);
   const handleClick = () => {
     setShowPopup(true);
@@ -21,11 +20,15 @@ const ListItem = ({ task, handleDragStart }) => {
         className={styles.listItem}
         onDragStart={(e) => handleDragStart(e, task)}
         draggable={true}
-        onClick={handleClick}
       >
-        <h4>{task.title}</h4>
-        <AssignedUsersDisplay isLargeView={true} task={task} />
-        <ColumnDropdownSelector task={task} />
+        <div onClick={handleClick} style={{ border: '1px solid pink' }}>
+          <h4> {task.title}</h4>
+          <AssignedUsersDisplay isLargeView={true} task={task} />
+        </div>
+
+        <div style={{ border: '1px solid green' }}>
+          <ColumnDropdownSelector task={task} />
+        </div>
       </div>
       {showPopup && <TaskPopup task={task} onClose={handleClose} />}
     </>
