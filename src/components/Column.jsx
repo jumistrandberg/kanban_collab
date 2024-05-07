@@ -18,6 +18,9 @@ const Column = ({ columnId, title }) => {
   const [active, setActive] = useState(false);
   const tasks = useSelector((state) => state.allTaskReducer.tasks);
   const activeUser = useActiveUser();
+
+  const dispatch = useDispatch(); 
+
   //filteredUsers is the same for all tasks and therefore can tasks[0] be used
   const filteredUsers = tasks.length > 0 ? tasks[0].filteredUsers : [];
 
