@@ -56,11 +56,11 @@ const TaskPopup = ({ task, onClose }) => {
   };
 
   return (
-    <div className={styles.TaskPopupContainer}>
+    <div className={styles.TaskPopupContainer} onClick={handleClose}>
       <div className={styles.Overlay}></div>
       <div
         className={styles.Popup}
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e) => console.log("styles.popup")}
         style={{
           backgroundColor: activeUser.settings.popup,
           color: activeUser.settings.popupText,
