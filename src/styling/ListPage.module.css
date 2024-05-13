@@ -13,7 +13,7 @@ h2 {
 
 .listItem {
   width: 40%;
-  height: 5em;
+  height: fit-content; /*Korrigerade från satt height för att få in users*/
   padding: 0 0.7em;
   border: 2px solid red;
   display: flex;

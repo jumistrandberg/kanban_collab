@@ -21,12 +21,12 @@ const ListItem = ({ task, handleDragStart }) => {
         onDragStart={(e) => handleDragStart(e, task)}
         draggable={true}
       >
-        <div onClick={handleClick} style={{ border: '1px solid pink' }}>
+        <div onClick={handleClick} className="title-icon-container">
           <h4> {task.title}</h4>
           <AssignedUsersDisplay isLargeView={true} task={task} />
         </div>
 
-        <div style={{ border: '1px solid green' }}>
+        <div>
           <ColumnDropdownSelector task={task} />
         </div>
       </div>
